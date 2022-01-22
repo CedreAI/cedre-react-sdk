@@ -24,6 +24,7 @@ limitations under the License.
 
     // Override StyledRadioButton default styles
     .mx_StyledRadioButton {
+        float: left;
         justify-content: center;
 
         .mx_StyledRadioButton_content {

@@ -53,6 +53,7 @@ export default class Sizer {
 
     /** @return {number} container offset to offsetParent */
     private getOffset(): number {
+        console.log(this.container.offsetLeft);
         return this.vertical ? this.container.offsetTop : this.container.offsetLeft;
     }
 
@@ -106,6 +107,7 @@ export default class Sizer {
         if (this.reverse) {
             return (this.getPageOffset() + this.getTotalSize()) - pos;
         } else {
+            console.log('offset' + this.getPageOffset());
             return pos - this.getPageOffset();
         }
     }
