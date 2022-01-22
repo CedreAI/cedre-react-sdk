@@ -71,9 +71,10 @@ export const shortcuts: Record<Categories, IShortcut[]> = {
                 key: Key.GREATER_THAN,
             }],
             description: _td("Toggle Quote"),
+
         }, {
             keybinds: [{
-                modifiers: [Modifiers.SHIFT],
+                modifiers: [CMD_OR_CTRL],
                 key: Key.ENTER,
             }],
             description: _td("New line"),
