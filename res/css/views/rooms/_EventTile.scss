@@ -87,7 +87,7 @@ $left-gutter: 64px;
 
     .mx_EventTile_avatar {
         top: 14px;
-        left: 8px;
+        float: right;
         cursor: pointer;
         user-select: none;
     }
@@ -118,6 +118,7 @@ $left-gutter: 64px;
         padding-bottom: 0px;
         padding-top: 0px;
         margin: 0px;
+        margin-right: 3vw;
         /* the next three lines, along with overflow hidden, truncate long display names */
         white-space: nowrap;
         text-overflow: ellipsis;
