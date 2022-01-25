@@ -163,7 +163,7 @@ $left-gutter: 64px;
     }
 
     .mx_EventTile_reply {
-        margin-right: 10px;
+        margin-right: 0px;
     }
 
     /* this is used for the tile for the event which is selected via the URL.
@@ -329,7 +329,7 @@ $left-gutter: 64px;
     .mx_EventTile[data-layout=group] {
         .mx_EventTile_line {
             /* ideally should be 100px, but 95px gives us a max thumbnail size of 800x600, which is nice */
-            margin-right: 110px;
+            margin-right: 20px;
         }
     }
     // on ELS we need the margin to allow interaction with the expand/collapse button which is normally in the RR gutter
