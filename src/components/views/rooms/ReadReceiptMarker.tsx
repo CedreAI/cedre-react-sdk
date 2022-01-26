@@ -176,7 +176,7 @@ export default class ReadReceiptMarker extends React.PureComponent<IProps, IStat
 
         const style = {
             left: toPx(this.props.leftOffset),
-            top: '0px',
+            top: '15px',
         };
 
         let title;
