@@ -280,6 +280,7 @@ limitations under the License.
     height: 32px;
     border-radius: 100%;
     background-color: $accent;
+    transform: rotate(180deg);
 
     &::before {
         position: absolute;

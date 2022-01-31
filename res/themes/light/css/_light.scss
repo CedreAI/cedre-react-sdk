@@ -29,7 +29,7 @@ $panel-hover: rgba($tertiary-content, 0.1);
 $panel-actions: rgba($tertiary-content, 0.2);
 $space-nav: rgba($tertiary-content, 0.15);
 
-$accent: #0DBD8B;
+$accent: #02bbce;
 $alert: #FF5B55;
 $links: #0086e6;
 
@@ -51,7 +51,7 @@ $header-panel-bg-color: #f3f8fd;
 
 // Theme specific colors
 // ********************
-$icon-button-color: red;
+$icon-button-color: #ad2c2d;
 // ********************
 
 // Colors that aren't in Figma and are theme specific - we need to get rid of these
@@ -75,7 +75,7 @@ $muted-fg-color: #61708b;
 $light-fg-color: #747474;
 $focus-bg-color: $preview-widget-bar-color;
 $info-plinth-bg-color: #f7f7f7;
-$event-selected-color: #f6f7f8;
+$event-selected-color: rgba(32, 48, 4, 0.4);
 $topleftmenu-color: #212121;
 $roomtopic-color: #9e9e9e;
 $groupFilterPanel-bg-color: rgba(232, 232, 232, 0.77);
