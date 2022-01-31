@@ -17,16 +17,17 @@ limitations under the License.
 
 .mx_BasicMessageComposer {
     position: relative;
-
+    text-align: right;
     .mx_BasicMessageComposer_inputEmpty > :first-child::before {
         content: var(--placeholder);
-        opacity: 0.333;
+        opacity: 0.5;
         width: 0;
         height: 0;
         overflow: visible;
         display: inline-block;
         pointer-events: none;
         white-space: nowrap;
+        margin-right: 155px;
     }
 
     @keyframes visualbell {
