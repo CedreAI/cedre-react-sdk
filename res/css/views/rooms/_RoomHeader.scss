@@ -75,7 +75,7 @@ limitations under the License.
 
 .mx_RoomHeader_buttons {
     display: flex;
-    background-color: $background;
+    background-color: transparent;
 }
 
 .mx_RoomHeader_info {
@@ -193,6 +193,7 @@ limitations under the License.
     height: 32px;
     width: 32px;
     border-radius: 100%;
+    background-color: transparent;
 
     &::before {
         content: '';
@@ -201,7 +202,7 @@ limitations under the License.
         left: 4px; // center with parent of 32px
         height: 24px;
         width: 24px;
-        background-color: $icon-button-color;
+        background-color: red;
         mask-repeat: no-repeat;
         mask-size: contain;
     }
@@ -252,8 +253,4 @@ limitations under the License.
     .mx_RoomHeader {
         overflow: hidden;
     }
-}
-
-.mx_RoomHeader_voiceCallButton{
-
 }
