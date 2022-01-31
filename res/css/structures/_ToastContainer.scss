@@ -20,7 +20,7 @@ limitations under the License.
     left: 70px;
     z-index: 101;
     padding: 4px;
-    display: grid;
+    display: none;
     grid-template-rows: 1fr 14px 6px;
 
     &.mx_ToastContainer_stacked::before {
