@@ -21,6 +21,7 @@ limitations under the License.
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    background-image: url("../../../img/bg2.png");
     filter: blur(var(--lp-background-blur));
     // Force a new layer for the backdropPanel so it's better hardware supported
     transform: translateZ(0);

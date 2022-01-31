@@ -32,7 +32,6 @@ $roomListCollapsedWidth: 68px;
     contain: layout paint;
 
     .mx_LeftPanel_wrapper--user {
-        background-color: $roomlist-bg-color;
         display: flex;
         overflow: hidden;
         position: relative;
@@ -278,4 +277,8 @@ $roomListCollapsedWidth: 68px;
             }
         }
     }
+}
+
+.mx_LeftPanel {
+    background-image: url("../../../img/bg2.png");
 }
