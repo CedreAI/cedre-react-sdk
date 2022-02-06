@@ -20,6 +20,7 @@ import { Room } from "matrix-js-sdk/src/models/room";
 import { RoomMember } from "matrix-js-sdk/src/models/room-member";
 import { RelationType } from 'matrix-js-sdk/src/@types/event';
 import { M_POLL_START } from "matrix-events-sdk";
+import { findDOMNode } from "react-dom";
 
 import { _t } from '../../../languageHandler';
 import { MatrixClientPeg } from '../../../MatrixClientPeg';
