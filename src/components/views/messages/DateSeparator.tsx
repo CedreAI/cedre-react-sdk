@@ -23,6 +23,8 @@ import { replaceableComponent } from "../../../utils/replaceableComponent";
 import SettingsStore from '../../../settings/SettingsStore';
 import { UIFeature } from '../../../settings/UIFeature';
 
+require('persian-date');
+
 function getDaysArray(): string[] {
     return [
         _t('Sunday'),

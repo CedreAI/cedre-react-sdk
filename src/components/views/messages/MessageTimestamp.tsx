@@ -45,7 +45,7 @@ export default class MessageTimestamp extends React.Component<IProps> {
         let persianTimestamp = '';
 
         for (let i = 0; i < timestamp.length; i++) {
-            switch(timestamp[i]) {
+            switch (timestamp[i]) {
                 case '0': persianTimestamp += '۰'; break;
                 case '1': persianTimestamp += '۱'; break;
                 case '2': persianTimestamp += '۲'; break;

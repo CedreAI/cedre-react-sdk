@@ -5304,6 +5304,11 @@ istanbul-reports@^3.0.2:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
+jalali-date@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/jalali-date/-/jalali-date-1.1.4.tgz#ccefd1f909541a9f36d774b4dfe7322d58610ef1"
+  integrity sha512-uahw/VGFvy5LntCrbeTkCrxtH9J2pxkjvb4TQtsM7PjkMBR1otpaYJkX7PCF5GfVkMP1hTI3CdQw0TAtEs3g1A==
+
 jest-canvas-mock@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/jest-canvas-mock/-/jest-canvas-mock-2.3.1.tgz#9535d14bc18ccf1493be36ac37dd349928387826"
@@ -6910,10 +6915,10 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-persian-number@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/persian-number/-/persian-number-1.5.1.tgz#7c897e8ab8f72ba2eba4daf8d8be19b8aec5fab6"
-  integrity sha512-BbJ0vUV23RtFCYiEn6jTx3hzDHRD8pAWl7xrisff2Pihqopu2G2zIySscchJ6lWp8QnwJBXf2FXHIW5V2QemRQ==
+persian-date@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/persian-date/-/persian-date-1.1.0.tgz#a06155797bca20217fa8302101ea5efd041a3221"
+  integrity sha512-YwV3703jLTTJFFQfP3RvMfvKZc5Z1yE++Deywox+hkVLuVN81VsTaZFma9k5P9SgfSUvXjiylbQVuf4YYLGOow==
 
 picocolors@^0.2.1:
   version "0.2.1"
@@ -7314,13 +7319,6 @@ react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-persian@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-persian/-/react-persian-1.1.1.tgz#63053ec19eb0f0c1f0d4337be63b39ae3694fb21"
-  integrity sha1-YwU+wZ6w8MHw1DN75js5rjaU+yE=
-  dependencies:
-    react ">=0.13.0"
-
 react-redux@^7.2.0:
   version "7.2.6"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.6.tgz#49633a24fe552b5f9caf58feb8a138936ddfe9aa"
@@ -7361,7 +7359,7 @@ react-transition-group@^4.4.1:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@17.0.2, react@>=0.13.0:
+react@17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
@@ -7841,6 +7839,18 @@ shallow-clone@^3.0.0:
   integrity sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==
   dependencies:
     kind-of "^6.0.2"
+
+shamsi-date-converter@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/shamsi-date-converter/-/shamsi-date-converter-1.0.5.tgz#625dee6129ab9137220af2d2d2794b356826104d"
+  integrity sha512-Ip8E6WkSs7aa1Uud9jTuMpegIFU/9mOQBli6tTriBaaYU2ckuzXxZuJus24XtmW5EkXY7tieFBpsrAPD9N2nLQ==
+  dependencies:
+    shamsi "^1.1.6"
+
+shamsi@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/shamsi/-/shamsi-1.1.6.tgz#9f08b3d8974d3990cdd6987a9ff9f7da88198b80"
+  integrity sha512-lTXsWGlPxY+AdkcoCJdwy4cFlqeULk0uPEBx+Mh7QIYEyfc+oPRFiChoxDHU3t2F2sL5J8gDJ6moD5sunOrWpg==
 
 shebang-command@^1.2.0:
   version "1.2.0"
