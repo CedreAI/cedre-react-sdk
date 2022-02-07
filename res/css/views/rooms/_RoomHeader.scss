@@ -209,11 +209,11 @@ limitations under the License.
 
     &:hover {
         background: rgba($accent, 0.1);
-
         &::before {
-            background-color: $accent;
+            background-color: #203004;
         }
     }
+
 }
 
 .mx_RoomHeader_forgetButton::before {
@@ -253,4 +253,7 @@ limitations under the License.
     .mx_RoomHeader {
         overflow: hidden;
     }
+}
+.mx_RoomHeader_button:hover {
+    color: #203004;
 }
