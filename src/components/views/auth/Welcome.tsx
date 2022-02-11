@@ -68,7 +68,6 @@ export default class Welcome extends React.PureComponent<IProps> {
                             "$riot:casUrl": "#/start_cas",
                         }}
                     />
-                    <LanguageSelector />
                 </div>
             </AuthPage>
         );
