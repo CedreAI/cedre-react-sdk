@@ -105,9 +105,9 @@ export const HomeButtonContextMenu = ({
         className="mx_SpacePanel_contextMenu"
         compact
     >
-        { !hideHeader && <div className="mx_SpacePanel_contextMenu_header">
-            { _t("Home") }
-        </div> }
+        {!hideHeader && <div className="mx_SpacePanel_contextMenu_header">
+            {_t("Home")}
+        </div>}
         <IconizedContextMenuOptionList first>
             <IconizedContextMenuCheckbox
                 iconClassName="mx_SpacePanel_noIcon"
@@ -246,9 +246,9 @@ const CreateSpaceButton = ({
             onClick={onNewClick}
             isNarrow={isPanelCollapsed}
         />
-        { betaDot }
+        {betaDot}
 
-        { contextMenu }
+        {contextMenu}
     </li>;
 };
 
@@ -258,6 +258,28 @@ const metaSpaceComponentMap: Record<MetaSpace, typeof HomeButton> = {
     [MetaSpace.People]: PeopleButton,
     [MetaSpace.Orphans]: OrphansButton,
 };
+
+
+const HomeIcon = () => {
+    
+    return <li className="mx_SpaceItem" onClick={()=>{
+        defaultDispatcher.dispatch({
+            action: 'view_home_page',
+        });
+    }}>
+        <div className="mx_AccessibleButton mx_SpaceButton mx_SpaceButton_home mx_SpaceButton_active mx_SpaceButton_narrow">
+            <div className="mx_SpaceButton_selectionWrapper">
+                <div className="mx_SpaceButton_avatarWrapper">
+                    <div className="mx_SpaceButton_avatarPlaceholder">
+                        <div className="mx_SpaceButton_icon">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+}
 
 // Optimisation based on https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md#recommended-droppable--performance-optimisation
 const InnerSpacePanel = React.memo<IInnerSpacePanelProps>(({ children, isPanelCollapsed, setPanelCollapsed }) => {
@@ -270,8 +292,10 @@ const InnerSpacePanel = React.memo<IInnerSpacePanelProps>(({ children, isPanelCo
     });
 
     return <div className="mx_SpaceTreeLevel">
-        { metaSpacesSection }
-        { invites.map(s => (
+        {<HomeIcon />}
+        {/* {metaSpacesSection} */}
+
+        {invites.map(s => (
             <SpaceItem
                 key={s.roomId}
                 space={s}
@@ -279,10 +303,10 @@ const InnerSpacePanel = React.memo<IInnerSpacePanelProps>(({ children, isPanelCo
                 isPanelCollapsed={isPanelCollapsed}
                 onExpand={() => setPanelCollapsed(false)}
             />
-        )) }
-        { actualSpaces.map((s, i) => (
+        ))}
+        {actualSpaces.map((s, i) => (
             <Draggable key={s.roomId} draggableId={s.roomId} index={i}>
-                { (provided, snapshot) => (
+                {(provided, snapshot) => (
                     <SpaceItem
                         {...provided.draggableProps}
                         dragHandleProps={provided.dragHandleProps}
@@ -294,10 +318,10 @@ const InnerSpacePanel = React.memo<IInnerSpacePanelProps>(({ children, isPanelCo
                         isPanelCollapsed={isPanelCollapsed}
                         onExpand={() => setPanelCollapsed(false)}
                     />
-                ) }
+                )}
             </Draggable>
-        )) }
-        { children }
+        ))}
+        {children}
         <CreateSpaceButton isPanelCollapsed={isPanelCollapsed} setPanelCollapsed={setPanelCollapsed} />
     </div>;
 });
@@ -323,7 +347,7 @@ const SpacePanel = () => {
             SpaceStore.instance.moveRootSpace(result.source.index, result.destination.index);
         }}>
             <RovingTabIndexProvider handleHomeEnd handleUpDown>
-                { ({ onKeyDownHandler }) => (
+                {({ onKeyDownHandler }) => (
                     <ul
                         className={classNames("mx_SpacePanel", { collapsed: isPanelCollapsed })}
                         onKeyDown={onKeyDownHandler}
@@ -338,16 +362,16 @@ const SpacePanel = () => {
                                 title={isPanelCollapsed ? _t("Expand") : _t("Collapse")}
                                 tooltip={<div>
                                     <div className="mx_Tooltip_title">
-                                        { isPanelCollapsed ? _t("Expand") : _t("Collapse") }
+                                        {isPanelCollapsed ? _t("Expand") : _t("Collapse")}
                                     </div>
                                     <div className="mx_Tooltip_sub">
-                                        { isMac ? "⌘ + ⇧ + D" : "Ctrl + Shift + D" }
+                                        {isMac ? "⌘ + ⇧ + D" : "Ctrl + Shift + D"}
                                     </div>
                                 </div>}
                             />
                         </UserMenu>
                         <Droppable droppableId="top-level-spaces">
-                            { (provided, snapshot) => (
+                            {(provided, snapshot) => (
                                 <IndicatorScrollbar
                                     {...provided.droppableProps}
                                     wrappedRef={provided.innerRef}
@@ -360,15 +384,15 @@ const SpacePanel = () => {
                                         isPanelCollapsed={isPanelCollapsed}
                                         setPanelCollapsed={setPanelCollapsed}
                                     >
-                                        { provided.placeholder }
+                                        {provided.placeholder}
                                     </InnerSpacePanel>
                                 </IndicatorScrollbar>
-                            ) }
+                            )}
                         </Droppable>
 
-                        { metaSpacesEnabled && <QuickSettingsButton isPanelCollapsed={isPanelCollapsed} /> }
+                        {metaSpacesEnabled && <QuickSettingsButton isPanelCollapsed={isPanelCollapsed} />}
                     </ul>
-                ) }
+                )}
             </RovingTabIndexProvider>
         </DragDropContext>
     );
