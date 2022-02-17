@@ -34,6 +34,10 @@ import MiniAvatarUploader, { AVATAR_SIZE } from "../views/elements/MiniAvatarUpl
 import Analytics from "../../Analytics";
 import CountlyAnalytics from "../../CountlyAnalytics";
 
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import HomePageChart from "./HomePageChart";
+
 const onClickSendDm = () => {
     Analytics.trackEvent('home_page', 'button', 'dm');
     CountlyAnalytics.instance.track("home_page_button", { button: "dm" });
@@ -87,7 +91,7 @@ const UserWelcomeTop = () => {
         </MiniAvatarUploader>
 
         <h1>{ _tDom("Welcome %(name)s", { name: ownProfile.displayName }) }</h1>
-        <h4>{ _tDom("Now, let's help you get started") }</h4>
+        {/* <h4>{ _tDom("Now, let's help you get started") }</h4> */}
     </div>;
 };
 
@@ -114,14 +118,33 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
         introSection = <React.Fragment>
             <img src={logoUrl} alt={config.brand} />
             <h1>{ _tDom("Welcome to %(appName)s", { appName: config.brand }) }</h1>
-            <h4>{ _tDom("Own your conversations.") }</h4>
+            {/* <h4>{ _tDom("Own your conversations.") }</h4> */}
         </React.Fragment>;
     }
-
+    
+   
     return <AutoHideScrollbar className="mx_HomePage mx_HomePage_default">
         <div className="mx_HomePage_default_wrapper">
             { introSection }
-            <div className="mx_HomePage_default_buttons">
+            <Tabs>
+                <TabList>
+                <Tab>ساختار</Tab>
+                <Tab>قرآن</Tab>
+                <Tab>تقویم</Tab>
+                </TabList>
+
+                <TabPanel>
+                    <HomePageChart/>
+                </TabPanel>
+                <TabPanel>
+                    <iframe src="http://www.parsquran.com/book/" width="500" height="500" sandbox="allow-forms allow-scripts"></iframe>
+                </TabPanel>
+                <TabPanel>
+                    <iframe src="https://www.time.ir/fa/today" width="500" height="500" sandbox="allow-forms allow-scripts"></iframe>
+                </TabPanel>
+                
+            </Tabs>
+            {/* <div className="mx_HomePage_default_buttons">
                 <AccessibleButton onClick={onClickSendDm} className="mx_HomePage_button_sendDm">
                     { _tDom("Send a Direct Message") }
                 </AccessibleButton>
@@ -131,7 +154,7 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
                 <AccessibleButton onClick={onClickNewRoom} className="mx_HomePage_button_createGroup">
                     { _tDom("Create a Group Chat") }
                 </AccessibleButton>
-            </div>
+            </div> */}
         </div>
     </AutoHideScrollbar>;
 };
