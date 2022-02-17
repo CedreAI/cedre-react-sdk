@@ -23,6 +23,24 @@ limitations under the License.
     margin-left: auto;
     margin-right: auto;
 }
+.mx_HomePage_Tabs {
+    width:100%;
+    .react-tabs__tab-list{
+        display: flex;
+        justify-content: center;
+    }
+    .react-tabs__tab{
+        font-size: 23px;
+    }
+    .react-tabs__tab-panel{
+        display: flex;
+        justify-content: center;
+    }
+    .mx_HomePage_Tabs_Iframe{
+        width:100%;
+        height:600px;
+    }
+}
 
 .mx_HomePage_default {
     text-align: center;

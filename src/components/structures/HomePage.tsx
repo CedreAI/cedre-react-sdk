@@ -123,11 +123,10 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
     }
     
    
-    return <AutoHideScrollbar className="mx_HomePage mx_HomePage_default">
-        <div className="mx_HomePage_default_wrapper">
-            { introSection }
-            <Tabs>
-                <TabList>
+    return <AutoHideScrollbar>
+        
+            <Tabs className='mx_HomePage_Tabs'>
+                <TabList >
                 <Tab>ساختار</Tab>
                 <Tab>قرآن</Tab>
                 <Tab>تقویم</Tab>
@@ -137,13 +136,14 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
                     <HomePageChart/>
                 </TabPanel>
                 <TabPanel>
-                    <iframe src="http://www.parsquran.com/book/" width="500" height="500" sandbox="allow-forms allow-scripts"></iframe>
+                    <iframe src="http://www.parsquran.com/book/" className='mx_HomePage_Tabs_Iframe'  sandbox="allow-forms allow-scripts"></iframe>
                 </TabPanel>
                 <TabPanel>
-                    <iframe src="https://www.time.ir/fa/today" width="500" height="500" sandbox="allow-forms allow-scripts"></iframe>
+                    <iframe src="https://www.time.ir/fa/today"  className='mx_HomePage_Tabs_Iframe' sandbox="allow-forms allow-scripts"></iframe>
                 </TabPanel>
                 
             </Tabs>
+            
             {/* <div className="mx_HomePage_default_buttons">
                 <AccessibleButton onClick={onClickSendDm} className="mx_HomePage_button_sendDm">
                     { _tDom("Send a Direct Message") }
@@ -155,7 +155,6 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
                     { _tDom("Create a Group Chat") }
                 </AccessibleButton>
             </div> */}
-        </div>
     </AutoHideScrollbar>;
 };
 
