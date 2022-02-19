@@ -136,7 +136,7 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
                     <HomePageChart/>
                 </TabPanel>
                 <TabPanel>
-                    <iframe src="http://www.parsquran.com/book/" className='mx_HomePage_Tabs_Iframe'  sandbox="allow-forms allow-scripts"></iframe>
+                    <iframe src="http://ayat.language.ml/" className='mx_HomePage_Tabs_Iframe'  sandbox="allow-forms allow-scripts"></iframe>
                 </TabPanel>
                 <TabPanel>
                     <iframe src="https://www.time.ir/fa/today"  className='mx_HomePage_Tabs_Iframe' sandbox="allow-forms allow-scripts"></iframe>
