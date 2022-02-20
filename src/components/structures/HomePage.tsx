@@ -90,7 +90,7 @@ const UserWelcomeTop = () => {
             />
         </MiniAvatarUploader>
 
-        <h1>{ _tDom("Welcome %(name)s", { name: ownProfile.displayName }) }</h1>
+        <h1>{_tDom("Welcome %(name)s", { name: ownProfile.displayName })}</h1>
         {/* <h4>{ _tDom("Now, let's help you get started") }</h4> */}
     </div>;
 };
@@ -117,34 +117,57 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
 
         introSection = <React.Fragment>
             <img src={logoUrl} alt={config.brand} />
-            <h1>{ _tDom("Welcome to %(appName)s", { appName: config.brand }) }</h1>
+            <h1>{_tDom("Welcome to %(appName)s", { appName: config.brand })}</h1>
             {/* <h4>{ _tDom("Own your conversations.") }</h4> */}
         </React.Fragment>;
     }
-    
-   
-    return <AutoHideScrollbar>
-        
-            <Tabs className='mx_HomePage_Tabs'>
-                <TabList >
-                <Tab>ساختار</Tab>
-                <Tab>قرآن</Tab>
-                <Tab>تقویم</Tab>
-                </TabList>
 
-                <TabPanel>
-                    <HomePageChart/>
-                </TabPanel>
-                <TabPanel>
-                    <iframe src="http://ayat.language.ml/" className='mx_HomePage_Tabs_Iframe'  sandbox="allow-forms allow-scripts"></iframe>
-                </TabPanel>
-                <TabPanel>
-                    <iframe src="https://www.time.ir/fa/today"  className='mx_HomePage_Tabs_Iframe' sandbox="allow-forms allow-scripts"></iframe>
-                </TabPanel>
+    const tabsData = [
+        {
+            'title': 'قرآن',
+            'url': 'https://ayat.language.ml/'
+        },
+        {
+            'title': 'تقویم',
+            'url': 'https://time.ir/'
+        },
+        {
+            'title': 'اخبار',
+            'url': 'https://www.parseek.com/Latest/'
+        },
+        {
+            'title': 'تقویم ۲',
+            'url': 'https://www.bahesab.ir/time/calendar/'
+        },
+        {
+            'title': 'تقویم ۳',
+            'url': 'https://www.taghvim.com/'
+        },
+    ]
+
+    return <AutoHideScrollbar>
+
+        <Tabs className='mx_HomePage_Tabs'>
+            <TabList >
+                <Tab>ساختار</Tab>
+                {tabsData.map((e)=><Tab>{e.title}</Tab>)}
                 
-            </Tabs>
+            </TabList>
+
+            <TabPanel>
+                <HomePageChart />
+            </TabPanel>
+
+            {tabsData.map((e)=>
+                <TabPanel>
+                    <iframe src={e.url} className='mx_HomePage_Tabs_Iframe'></iframe>
+                </TabPanel>
+            )}
             
-            {/* <div className="mx_HomePage_default_buttons">
+
+        </Tabs>
+
+        {/* <div className="mx_HomePage_default_buttons">
                 <AccessibleButton onClick={onClickSendDm} className="mx_HomePage_button_sendDm">
                     { _tDom("Send a Direct Message") }
                 </AccessibleButton>
