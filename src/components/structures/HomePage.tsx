@@ -128,21 +128,18 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             'url': 'https://ayat.language.ml/'
         },
         {
-            'title': 'تقویم',
-            'url': 'https://time.ir/'
-        },
-        {
             'title': 'اخبار',
             'url': 'https://www.parseek.com/Latest/'
         },
         {
-            'title': 'تقویم ۲',
-            'url': 'https://www.bahesab.ir/time/calendar/'
+            'title': 'بانک حدیث',
+            'url': 'https://hadith.inoor.ir'
         },
         {
-            'title': 'تقویم ۳',
-            'url': 'https://www.taghvim.com/'
+            'title': 'تقویم',
+            'url': 'https://www.todaytime.ir/'
         },
+        
     ]
 
     return <AutoHideScrollbar>
