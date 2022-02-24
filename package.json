@@ -100,6 +100,7 @@
     "pako": "^2.0.3",
     "parse5": "^6.0.1",
     "persian-date": "^1.1.0",
+    "pigeon-maps": "^0.20.0",
     "png-chunks-extract": "^1.0.0",
     "posthog-js": "1.12.2",
     "prop-types": "^15.7.2",

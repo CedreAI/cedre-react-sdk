@@ -37,6 +37,7 @@ import CountlyAnalytics from "../../CountlyAnalytics";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import HomePageChart from "./HomePageChart";
+import HomePageMap from "./HomePageMap.js";
 
 const onClickSendDm = () => {
     Analytics.trackEvent('home_page', 'button', 'dm');
@@ -147,6 +148,7 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
         <Tabs className='mx_HomePage_Tabs'>
             <TabList >
                 <Tab>ساختار</Tab>
+                <Tab>نقشه</Tab>
                 {tabsData.map((e)=><Tab>{e.title}</Tab>)}
                 
             </TabList>
@@ -154,7 +156,9 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             <TabPanel>
                 <HomePageChart />
             </TabPanel>
-
+            <TabPanel>
+                <HomePageMap />
+            </TabPanel>
             {tabsData.map((e)=>
                 <TabPanel>
                     <iframe src={e.url} className='mx_HomePage_Tabs_Iframe'></iframe>
