@@ -250,6 +250,15 @@ export default class ServerPickerDialog extends React.PureComponent<IProps, ISta
                 </p>
 
                 <StyledRadioButton
+                    name="quranicChosen"
+                    value="false"
+                    checked={this.state.quranicChosen}
+                    onChange={this.onAlternativeServerChosen1}
+                >
+                    { 'quranic.network' }
+                </StyledRadioButton>
+
+                <StyledRadioButton
                     name="defaultChosen"
                     value="true"
                     checked={this.state.parsiChosen}
@@ -258,14 +267,6 @@ export default class ServerPickerDialog extends React.PureComponent<IProps, ISta
                     { defaultServerName }
                 </StyledRadioButton>
 
-                <StyledRadioButton
-                    name="quranicChosen"
-                    value="false"
-                    checked={this.state.quranicChosen}
-                    onChange={this.onAlternativeServerChosen1}
-                >
-                    { 'quranic.network' }
-                </StyledRadioButton>
 
                 <StyledRadioButton
                     name="ebadChosen"
