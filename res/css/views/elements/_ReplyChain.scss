@@ -20,7 +20,7 @@ limitations under the License.
     margin-right: 0;
     margin-bottom: 8px;
     padding: 0 10px;
-    border-left: 2px solid $accent;
+    border-right: 2px solid $accent;
     border-radius: 2px;
 
     .mx_ReplyChain_show {
@@ -33,35 +33,35 @@ limitations under the License.
     }
 
     &.mx_ReplyChain_color1 {
-        border-left-color: $username-variant1-color;
+        border-right-color: $username-variant1-color;
     }
 
     &.mx_ReplyChain_color2 {
-        border-left-color: $username-variant2-color;
+        border-right-color: $username-variant2-color;
     }
 
     &.mx_ReplyChain_color3 {
-        border-left-color: $username-variant3-color;
+        border-right-color: $username-variant3-color;
     }
 
     &.mx_ReplyChain_color4 {
-        border-left-color: $username-variant4-color;
+        border-right-color: $username-variant4-color;
     }
 
     &.mx_ReplyChain_color5 {
-        border-left-color: $username-variant5-color;
+        border-right-color: $username-variant5-color;
     }
 
     &.mx_ReplyChain_color6 {
-        border-left-color: $username-variant6-color;
+        border-right-color: $username-variant6-color;
     }
 
     &.mx_ReplyChain_color7 {
-        border-left-color: $username-variant7-color;
+        border-right-color: $username-variant7-color;
     }
 
     &.mx_ReplyChain_color8 {
-        border-left-color: $username-variant8-color;
+        border-right-color: $username-variant8-color;
     }
 }
 
