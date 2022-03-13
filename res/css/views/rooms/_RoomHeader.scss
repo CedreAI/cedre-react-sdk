@@ -16,8 +16,8 @@ limitations under the License.
 
 .mx_RoomHeader {
     flex: 0 0 50px;
-    border-bottom: 1px solid $primary-hairline-color;
-    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    background-color: #026F66;
 
     .mx_RoomHeader_e2eIcon {
         height: 12px;
@@ -39,7 +39,6 @@ limitations under the License.
     min-width: 0;
     margin: 0 20px 0 16px;
     padding-top: 8px;
-    border-bottom: 1px solid $system;
 
     .mx_InviteOnlyIcon_large {
         margin: 0;
