@@ -132,12 +132,12 @@ export default class SenderProfile extends React.Component<IProps, IState> {
                 groups={displayedGroups}
             />;
         }
-
+        // i have deleted the display name
         return (
             <div className="mx_SenderProfile" dir="auto" onClick={this.props.onClick}>
-                <span className={`mx_SenderProfile_displayName ${colorClass}`}>
-                    { displayName }
-                </span>
+                {/*<span className={`mx_SenderProfile_displayName ${colorClass}`}>*/}
+                {/*    { displayName }*/}
+                {/*</span>*/}
                 { mxidElement }
                 { flair }
             </div>

@@ -1,8 +1,19 @@
 .fanoos_sender-message {
-    width: fit-content;
+    background-color: #008E88;
+    max-width: 60%;
+    color: white;
+    border-radius: 20px 20px 0 20px;
 }
 
 .fanoos_receiver-message {
     float: left;
     width: fit-content;
+    max-width: 60%;
+    background-color: #FFFFFF;
+    border-radius: 0 20px 20px 20px;
+}
+
+
+.fanoos_receiver-avatar {
+    margin-right: 85vw;
 }

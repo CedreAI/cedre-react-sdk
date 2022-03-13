@@ -520,6 +520,8 @@ export default class EventTile extends React.Component<IProps, IState> {
         room?.on(ThreadEvent.New, this.onNewThread);
     }
 
+
+
     private setupNotificationListener = (thread: Thread): void => {
         const room = this.context.getRoom(this.props.mxEvent.getRoomId());
         const notifications = RoomNotificationStateStore.instance.getThreadsRoomState(room);
@@ -665,7 +667,11 @@ export default class EventTile extends React.Component<IProps, IState> {
         }
 
         return <>
-            <MemberAvatar member={threadLastReply.sender} width={24} height={24} className="mx_ThreadInfo_avatar" />
+            <MemberAvatar
+                member={threadLastReply.sender}
+                width={24}
+                height={24}
+                className="mx_ThreadInfo_avatar" />
             <div className="mx_ThreadInfo_content">
                 <span className="mx_ThreadInfo_message-preview">
                     { threadMessagePreview }
@@ -1215,12 +1221,17 @@ export default class EventTile extends React.Component<IProps, IState> {
             } else {
                 member = this.props.mxEvent.sender;
             }
+            const senderUser = this.props.mxEvent.getSender();
+            const loggedInUser = window.localStorage.getItem('mx_user_id');
+            const isSender = senderUser === loggedInUser;
+
             avatar = (
                 <div className="mx_EventTile_avatar">
                     <MemberAvatar
                         member={member}
-                        width={avatarSize}
-                        height={avatarSize}
+                        width={40}
+                        height={40}
+                        isSender={isSender}
                         viewUserOnClick={true}
                     />
                 </div>
@@ -1229,12 +1240,18 @@ export default class EventTile extends React.Component<IProps, IState> {
 
         if (needsSenderProfile && this.props.hideSender !== true) {
             if (!this.props.tileShape || this.props.tileShape === TileShape.Thread) {
-                sender = <SenderProfile onClick={this.onSenderProfileClick}
+                // @ts-ignore
+                sender = <SenderProfile
+                    onClick={this.onSenderProfileClick}
                     mxEvent={this.props.mxEvent}
                     enableFlair={this.props.enableFlair}
                 />;
             } else {
-                sender = <SenderProfile mxEvent={this.props.mxEvent} enableFlair={this.props.enableFlair} />;
+                // @ts-ignore
+                sender = <SenderProfile
+                    mxEvent={this.props.mxEvent}
+                    enableFlair={this.props.enableFlair}
+                />;
             }
         }
 
