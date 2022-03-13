@@ -107,8 +107,8 @@ export default class MemberAvatar extends React.Component<IProps, IState> {
         }
 
         return (
-            <BaseAvatar 
-                {...otherProps} 
+            <BaseAvatar
+                {...otherProps}
                 className={this.props.isSender? 'fanoos_sender-avatar' : 'fanoos_receiver-avatar'}
                 name={this.state.name}
                 title={this.state.title}

@@ -24,7 +24,7 @@ limitations under the License.
     filter: blur(var(--lp-background-blur));
     // Force a new layer for the backdropPanel so it's better hardware supported
     transform: translateZ(0);
-    background-image: url("../../../img/bg1.png");
+    background-image: url("../../../img/bg2.png");
 }
 
 .mx_BackdropPanel--image {
