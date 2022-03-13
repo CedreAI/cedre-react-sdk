@@ -156,10 +156,15 @@ export default class MessageEvent extends React.Component<IProps> implements IMe
             }
         }
 
+        const senderUser = this.props.mxEvent.getSender();
+        const loggedInUser = window.localStorage.getItem('mx_user_id');
+        const isSender = senderUser === loggedInUser;
+
         // @ts-ignore - this is a dynamic react component
         return BodyType ? <BodyType
             ref={this.body}
             mxEvent={this.props.mxEvent}
+            isSender={isSender}
             highlights={this.props.highlights}
             highlightLink={this.props.highlightLink}
             showUrlPreview={this.props.showUrlPreview}

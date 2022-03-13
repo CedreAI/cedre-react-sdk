@@ -605,8 +605,11 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
         }
 
         if (isEmote) {
+            // @ts-ignore
+            const emoteClassName: string = this.props.isSender? "mx_MEmoteBody mx_EventTile_content fanoos_sender-message"
+                :"mx_MEmoteBody mx_EventTile_content fanoos_receiver-message";
             return (
-                <div className="mx_MEmoteBody mx_EventTile_content">
+                <div className={emoteClassName}>
                     *&nbsp;
                     <span
                         className="mx_MEmoteBody_sender"
@@ -621,15 +624,21 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
             );
         }
         if (isNotice) {
+            // @ts-ignore
+            const noticeClassName: string = this.props.isSender? "mx_MNoticeBody mx_EventTile_content fanoos_sender-message"
+                :"mx_MNoticeBody mx_EventTile_content fanoos_receiver-message";
             return (
-                <div className="mx_MNoticeBody mx_EventTile_content">
+                <div className={noticeClassName}>
                     { body }
                     { widgets }
                 </div>
             );
         }
+        // @ts-ignore
+        const normalClassName: string = this.props.isSender? "mx_MTextBody mx_EventTile_content fanoos_sender-message"
+            :"mx_MTextBody mx_EventTile_content fanoos_receiver-message";
         return (
-            <div className="mx_MTextBody mx_EventTile_content">
+            <div className={normalClassName}>
                 { body }
                 { widgets }
             </div>
