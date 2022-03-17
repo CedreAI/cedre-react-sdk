@@ -33,8 +33,7 @@ const RoomName = ({ room, children }: IProps): JSX.Element => {
         setName(room?.name);
     }, [room]);
 
-    if (children) return children(name);
-    return <>{ name || "" }</>;
+    return <div style={{color: 'white'}}>{ name || "" }</div>;
 };
 
 export default RoomName;

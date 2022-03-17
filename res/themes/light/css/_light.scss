@@ -51,13 +51,13 @@ $header-panel-bg-color: #f3f8fd;
 
 // Theme specific colors
 // ********************
-$icon-button-color: #ad2c2d;
+$icon-button-color: grey;
 // ********************
 
 // Colors that aren't in Figma and are theme specific - we need to get rid of these
 // ********************
 $selection-fg-color: $background;
-$yellow-background:  #fff8e3;
+$yellow-background:  rgba(255, 248, 227, 0.42);
 $secondary-accent-color: #f2f5f8;
 $button-fg-color: $background;
 $neutral-badge-color: #dbdbdb;
@@ -166,7 +166,7 @@ $imagebody-giflabel-color: $background;
 
 // RoomList
 // ********************
-$roomlist-bg-color: rgba(245, 245, 245, 0.90);
+$roomlist-bg-color: #001015;
 $roomsublist-skeleton-ui-bg: linear-gradient(180deg, $background 0%, #ffffff00 100%);
 $roomtile-default-badge-bg-color: $muted-fg-color;
 // ********************
