@@ -367,11 +367,7 @@ export default class LeftPanel extends React.Component<IProps, IState> {
         if (this.state.showBreadcrumbs === BreadcrumbsMode.Labs) {
             rightButton = <RecentlyViewedButton />;
         } else if (this.state.activeSpace === MetaSpace.Home) {
-            rightButton = <AccessibleTooltipButton
-                className="mx_LeftPanel_exploreButton"
-                onClick={this.onExplore}
-                title={_t("Explore rooms")}
-            />;
+            rightButton = <div />;
         }
 
         return (

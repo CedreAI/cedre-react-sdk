@@ -201,11 +201,10 @@ export default class RoomSearch extends React.PureComponent<IProps, IState> {
                 title={_t("Clear filter")}
                 className="mx_RoomSearch_clearButton"
                 onClick={this.clearInput}
+                style={{backgroundColor : 'transparent'}}
             />
         );
-        let shortcutPrompt = <div className="mx_RoomSearch_shortcutPrompt" onClick={this.focus}>
-            { isMac ? "⌘ K" : "Ctrl K" }
-        </div>;
+        let shortcutPrompt = <div />;
 
         if (this.props.isMinimized) {
             icon = (
