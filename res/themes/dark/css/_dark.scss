@@ -1,6 +1,7 @@
 // Colors from Figma Compound https://www.figma.com/file/X4XTH9iS2KGJ2wFKDqkyed/Compound?node-id=559%3A741
 // ********************
-$primary-content: rgb(255, 255, 255);
+$incoming-message-text-color: #474747;
+$primary-content: $incoming-message-text-color;
 $secondary-content: #A9B2BC;
 $tertiary-content: #ffffff;
 $quaternary-content: #6F7882;
@@ -25,7 +26,8 @@ $header-panel-bg-color: #20252B;
 
 // Theme specific colors
 // ********************
-$icon-button-color: $tertiary-content;
+//رنگ دکمه های درون باکس تایپ کردن پیام با این تغییر میکنن.
+$icon-button-color: #909090;
 // ********************
 
 // Colors that aren't in Figma and are theme specific - we need to get rid of these
@@ -122,10 +124,10 @@ $tab-label-active-fg-color: $primary-content;
 
 // Buttons
 // ********************
-$button-primary-fg-color: $primary-content;
-$button-secondary-bg-color: transparent;
-$button-danger-fg-color: $primary-content;
-$button-danger-disabled-fg-color: $primary-content;
+$button-primary-fg-color: #909090;
+$button-secondary-bg-color: #909090;
+$button-danger-fg-color: #909090;
+$button-danger-disabled-fg-color: #909090;
 // ********************
 
 // Toggle switch
@@ -289,3 +291,11 @@ $selected-color: $room-highlight-color;
     background: #53232a;
 }
 // ********************
+
+
+/**
+اضافات مورد نیاز به تم دارک
+ */
+.fanoos_receiver-message {
+    color: $incoming-message-text-color;
+}
