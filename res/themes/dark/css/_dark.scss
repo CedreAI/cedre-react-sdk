@@ -1,17 +1,17 @@
 // Colors from Figma Compound https://www.figma.com/file/X4XTH9iS2KGJ2wFKDqkyed/Compound?node-id=559%3A741
 // ********************
 $incoming-message-text-color: #474747;
-$primary-content: $incoming-message-text-color;
-$secondary-content: #A9B2BC;
+$primary-content: white;
+$secondary-content: white;
 $tertiary-content: #ffffff;
-$quaternary-content: #6F7882;
-$quinary-content: #394049;
-
-$system: #21262C;
+$quaternary-content: white;
+$quinary-content: white;
+//حالت هاور پیام ها هم از این استفاده میکنه
+$system: rgba(255, 255, 255, 0.42);
 $background: #15191E;
 
 $panel-base: #8D97A5; // This color is not intended for use in the app
-$panels: rgba($system, 0.9);
+$panels: #001015;
 $panel-selected: rgba($panel-base, 0.3);
 $panel-hover: rgba($panel-base, 0.1);
 $panel-actions: rgba($panel-base, 0.2);
@@ -78,7 +78,7 @@ $menu-selected-color: $room-highlight-color;
 // ********************
 $settings-profile-overlay-placeholder-fg-color: #454545;
 $settings-profile-button-bg-color: #e7e7e7;
-$settings-subsection-fg-color: $text-secondary-color;
+$settings-subsection-fg-color: white;
 // ********************
 
 // RoomHeader
@@ -111,7 +111,7 @@ $dialog-close-external-color: $primary-content;
 
 // RoomList
 // ********************
-$roomlist-bg-color: rgba($system, 0.90);
+$roomlist-bg-color: #001015;
 $roomsublist-skeleton-ui-bg: linear-gradient(180deg, #3e444c 0%, #3e444c00 100%);
 $roomtile-default-badge-bg-color: $input-darker-fg-color;
 // ********************
