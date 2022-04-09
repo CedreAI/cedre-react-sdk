@@ -38,6 +38,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import HomePageChart from "./HomePageChart";
 import HomePageMap from "./HomePageMap.js";
+import HomePage3DMap from "./HomePage3DMap.js";
 
 const onClickSendDm = () => {
     Analytics.trackEvent('home_page', 'button', 'dm');
@@ -149,6 +150,7 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             <TabList >
                 <Tab>ساختار</Tab>
                 <Tab>نقشه</Tab>
+                <Tab>نقشه سه بعدی</Tab>
                 {tabsData.map((e)=><Tab>{e.title}</Tab>)}
                 
             </TabList>
@@ -158,6 +160,9 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             </TabPanel>
             <TabPanel>
                 <HomePageMap />
+            </TabPanel>
+            <TabPanel>
+                <HomePage3DMap />
             </TabPanel>
             {tabsData.map((e)=>
                 <TabPanel>
