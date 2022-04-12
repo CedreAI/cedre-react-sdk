@@ -1,6 +1,5 @@
-import React from 'react'
+import React from 'react';
 import Globe from 'react-globe.gl';
-
 
 function HomePage3DMap() {
     return (

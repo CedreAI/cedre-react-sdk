@@ -3,8 +3,8 @@
 $incoming-message-text-color: #474747;
 $primary-content: white;
 $secondary-content: white;
-$tertiary-content: #ffffff;
-$quaternary-content: white;
+$tertiary-content: white;
+$quaternary-content: black;
 $quinary-content: black;
 //حالت هاور پیام ها هم از این استفاده میکنه
 $system: rgba(255, 255, 255, 0.42);
@@ -97,13 +97,13 @@ $other-user-pill-bg-color: $room-highlight-color;
 // ********************
 $input-border-color: rgba(231, 231, 231, 0.2);
 $input-darker-bg-color: #181b21;
-$input-darker-fg-color: #61708b;
+$input-darker-fg-color: #000000;
 $input-lighter-bg-color: #f2f5f8;
 // ********************
 
 // Dialog
 // ********************
-$dialog-title-fg-color: $primary-content;
+$dialog-title-fg-color: black;
 $dialog-backdrop-color: $menu-border-color;
 $dialog-close-fg-color: #9fa9ba;
 $dialog-close-external-color: $primary-content;
@@ -292,10 +292,22 @@ $selected-color: $room-highlight-color;
 }
 // ********************
 
-
 /**
 اضافات مورد نیاز به تم دارک
  */
 .fanoos_receiver-message {
     color: $incoming-message-text-color;
+}
+///**
+//رنگ باکس تایپ پیام. متنش
+// */
+//.mx_MessageComposer_input textarea {
+//    color: #909090;
+//}
+
+/**
+پس زمینه در حالت دارک
+ */
+.mx_RoomView {
+    background-image: url("../../../img/bg2.png");
 }

@@ -355,3 +355,9 @@ $copy-button-url: "$(res)/img/feather-customised/clipboard.svg";
     background: #fdd;
 }
 // ********************
+/**
+پس زمینه در حالت روشن
+ */
+.mx_RoomView {
+    background-image: url("../../../img/bg1.png");
+}
