@@ -216,8 +216,17 @@ export default class ReactionsRow extends React.PureComponent<IProps, IState> {
             addReactionButton = <ReactButton mxEvent={mxEvent} reactions={reactions} />;
         }
 
+        const senderUser = this.props.mxEvent.getSender();
+        const loggedInUser = window.localStorage.getItem('mx_user_id');
+        const isSender = senderUser === loggedInUser;
+
+        let classNameReactionsRow = "mx_ReactionsRow fanoos_receiver-reaction";
+        if (isSender) {
+            classNameReactionsRow = "mx_ReactionsRow fanoos_sender-reaction";
+        }
+
         return <div
-            className="mx_ReactionsRow"
+            className={classNameReactionsRow}
             role="toolbar"
             aria-label={_t("Reactions")}
         >
