@@ -38,6 +38,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import HomePageChart from "./HomePageChart";
 import HomePageMap from "./HomePageMap.js";
+import SettingsStore from "../../settings/SettingsStore";
 
 const onClickSendDm = () => {
     Analytics.trackEvent('home_page', 'button', 'dm');
@@ -99,6 +100,7 @@ const UserWelcomeTop = () => {
 const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
     const config = SdkConfig.get();
     const pageUrl = getHomePageUrl(config);
+    const ActiveTabs = SettingsStore.getValue("ActiveTabs")
 
     if (pageUrl) {
         // FIXME: Using an import will result in wrench-element-tests failures
@@ -125,8 +127,19 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
 
     const tabsData = [
         {
+            'title': 'ساختار',
+            'content': <HomePageChart />,
+            
+        },
+        {
+            'title': 'نقشه',
+            'content': <HomePageMap />,
+            
+        },
+        {
             'title': 'قرآن',
             'url': 'https://ayat.language.ml/'
+            
         },
         {
             'title': 'اخبار',
@@ -147,25 +160,13 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
 
         <Tabs className='mx_HomePage_Tabs'>
             <TabList >
-                <Tab>ساختار</Tab>
-                <Tab>نقشه</Tab>
-                {tabsData.map((e)=><Tab>{e.title}</Tab>)}
-                
+                {ActiveTabs.map((item,index)=>item == 1 ? <Tab>{tabsData[index].title}</Tab> : null)}
             </TabList>
-
-            <TabPanel>
-                <HomePageChart />
-            </TabPanel>
-            <TabPanel>
-                <HomePageMap />
-            </TabPanel>
-            {tabsData.map((e)=>
+            {ActiveTabs.map((item,index)=>item == 1 ? 
                 <TabPanel>
-                    <iframe src={e.url} className='mx_HomePage_Tabs_Iframe'></iframe>
-                </TabPanel>
-            )}
-            
-
+                    {tabsData[index].url?<iframe src={tabsData[index].url} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>:tabsData[index].content}
+                </TabPanel> 
+            : null)}
         </Tabs>
 
         {/* <div className="mx_HomePage_default_buttons">

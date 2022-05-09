@@ -39,7 +39,7 @@ limitations under the License.
         display: flex;
         justify-content: center;
     }
-    .mx_HomePage_Tabs_Iframe{
+    .mx_HomePage_Tabs_Iframe,iframe{
         width:100%;
         height:calc(100vh - 50px);
     }
