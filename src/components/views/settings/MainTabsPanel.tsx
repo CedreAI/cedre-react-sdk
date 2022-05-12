@@ -36,7 +36,7 @@ export default class MainTabsPanel extends React.Component<IProps, IState> {
 
         this.state = {
             items:SettingsStore.getValue("ActiveTabs"),
-            itemsName: ["ساختار", "نقشه", "قرآن", "اخبار", "بانک حدیث", "تقویم"]
+            itemsName: ["ساختار", "نقشه","نقشه سه بعدی", "قرآن", "اخبار", "بانک حدیث", "تقویم"]
 
         };
     }

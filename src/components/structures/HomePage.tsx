@@ -39,6 +39,8 @@ import 'react-tabs/style/react-tabs.css';
 import HomePageChart from "./HomePageChart";
 import HomePageMap from "./HomePageMap.js";
 import SettingsStore from "../../settings/SettingsStore";
+import HomePage3DMap from "./HomePage3DMap.js";
+import { SettingLevel } from "../../settings/SettingLevel";
 
 const onClickSendDm = () => {
     Analytics.trackEvent('home_page', 'button', 'dm');
@@ -100,7 +102,50 @@ const UserWelcomeTop = () => {
 const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
     const config = SdkConfig.get();
     const pageUrl = getHomePageUrl(config);
+    const tabsData = [
+        {
+            'title': 'ساختار',
+            'content': <HomePageChart />,
+            
+        },
+        {
+            'title': 'نقشه',
+            'content': <HomePageMap />,
+            
+        },
+        {
+            'title': 'نقشه سه بعدی',
+            'content': <HomePage3DMap />,
+            
+        },
+        {
+            'title': 'قرآن',
+            'url': 'https://ayat.language.ml/'
+            
+        },
+        {
+            'title': 'اخبار',
+            'url': 'https://www.parseek.com/Latest/'
+        },
+        {
+            'title': 'بانک حدیث',
+            'url': 'https://hadith.inoor.ir'
+        },
+        {
+            'title': 'تقویم',
+            'url': 'https://www.todaytime.ir/'
+        },
+        
+    ]
+
     const ActiveTabs = SettingsStore.getValue("ActiveTabs")
+
+    if(tabsData.length > ActiveTabs.length) {
+        for (let i = 0; i < tabsData.length - ActiveTabs.length; i++) {
+            ActiveTabs.push(1)
+        }
+        SettingsStore.setValue("ActiveTabs", null, SettingLevel.ACCOUNT, ActiveTabs);
+    }
 
     if (pageUrl) {
         // FIXME: Using an import will result in wrench-element-tests failures
@@ -125,44 +170,14 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
         </React.Fragment>;
     }
 
-    const tabsData = [
-        {
-            'title': 'ساختار',
-            'content': <HomePageChart />,
-            
-        },
-        {
-            'title': 'نقشه',
-            'content': <HomePageMap />,
-            
-        },
-        {
-            'title': 'قرآن',
-            'url': 'https://ayat.language.ml/'
-            
-        },
-        {
-            'title': 'اخبار',
-            'url': 'https://www.parseek.com/Latest/'
-        },
-        {
-            'title': 'بانک حدیث',
-            'url': 'https://hadith.inoor.ir'
-        },
-        {
-            'title': 'تقویم',
-            'url': 'https://www.todaytime.ir/'
-        },
-        
-    ]
-
+   
     return <AutoHideScrollbar>
 
         <Tabs className='mx_HomePage_Tabs'>
             <TabList >
-                {ActiveTabs.map((item,index)=>item == 1 ? <Tab>{tabsData[index].title}</Tab> : null)}
+                {ActiveTabs.slice(0,tabsData.length).map((item,index)=>item == 1 ? <Tab>{tabsData[index].title}</Tab> : null)}
             </TabList>
-            {ActiveTabs.map((item,index)=>item == 1 ? 
+            {ActiveTabs.slice(0,tabsData.length).map((item,index)=>item == 1 ? 
                 <TabPanel>
                     {tabsData[index].url?<iframe src={tabsData[index].url} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>:tabsData[index].content}
                 </TabPanel> 
