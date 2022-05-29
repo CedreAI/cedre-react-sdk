@@ -27,14 +27,18 @@ import katex from 'katex';
 import { AllHtmlEntities } from 'html-entities';
 import { IContent } from 'matrix-js-sdk/src/models/event';
 
-import { _linkifyElement, _linkifyString } from './linkify-matrix';
+import {
+    _linkifyElement,
+    _linkifyString,
+    ELEMENT_URL_PATTERN,
+    options as linkifyMatrixOptions,
+} from './linkify-matrix';
 import { IExtendedSanitizeOptions } from './@types/sanitize-html';
 import SettingsStore from './settings/SettingsStore';
 import { tryTransformPermalinkToLocalHref } from "./utils/permalinks/Permalinks";
 import { getEmojiFromUnicode } from "./emoji";
-import ReplyChain from "./components/views/elements/ReplyChain";
 import { mediaFromMxc } from "./customisations/Media";
-import { ELEMENT_URL_PATTERN, options as linkifyMatrixOptions } from './linkify-matrix';
+import { stripHTMLReply, stripPlainReply } from './utils/Reply';
 
 // Anything outside the basic multilingual plane will be a surrogate pair
 const SURROGATE_PAIR_PATTERN = /([\ud800-\udbff])([\udc00-\udfff])/;
@@ -45,10 +49,10 @@ const SURROGATE_PAIR_PATTERN = /([\ud800-\udbff])([\udc00-\udfff])/;
 const SYMBOL_PATTERN = /([\u2100-\u2bff])/;
 
 // Regex pattern for Zero-Width joiner unicode characters
-const ZWJ_REGEX = new RegExp("\u200D|\u2003", "g");
+const ZWJ_REGEX = /[\u200D\u2003]/g;
 
 // Regex pattern for whitespace characters
-const WHITESPACE_REGEX = new RegExp("\\s", "g");
+const WHITESPACE_REGEX = /\s/g;
 
 const BIGEMOJI_REGEX = new RegExp(`^(${EMOJIBASE_REGEX.source})+$`, 'i');
 
@@ -89,7 +93,6 @@ const MEDIA_API_MXC_REGEX = /\/_matrix\/media\/r0\/(?:download|thumbnail)\/(.+?)
  * Uses a much, much simpler regex than emojibase's so will give false
  * positives, but useful for fast-path testing strings to see if they
  * need emojification.
- * unicodeToImage uses this function.
  */
 function mightContainEmoji(str: string): boolean {
     return SURROGATE_PAIR_PATTERN.test(str) || SYMBOL_PATTERN.test(str);
@@ -177,12 +180,17 @@ const transformTags: IExtendedSanitizeOptions["transformTags"] = { // custom to 
             attribs.target = '_blank'; // by default
 
             const transformed = tryTransformPermalinkToLocalHref(attribs.href); // only used to check if it is a link that can be handled locally
-            if (transformed !== attribs.href || // it could be converted so handle locally symbols e.g. @user:server.tdl, matrix: and matrix.to
-                attribs.href.match(ELEMENT_URL_PATTERN) // for https:vector|riot...
+            if (
+                transformed !== attribs.href || // it could be converted so handle locally symbols e.g. @user:server.tdl, matrix: and matrix.to
+                attribs.href.match(ELEMENT_URL_PATTERN) // for https links to Element domains
             ) {
                 delete attribs.target;
             }
+        } else {
+            // Delete the href attrib if it is falsy
+            delete attribs.href;
         }
+
         attribs.rel = 'noreferrer noopener'; // https://mathiasbynens.github.io/rel-noopener/
         return { tagName, attribs };
     },
@@ -209,11 +217,19 @@ const transformTags: IExtendedSanitizeOptions["transformTags"] = { // custom to 
             return { tagName, attribs: {} };
         }
 
-        const width = Math.min(Number(attribs.width) || 800, 800);
-        const height = Math.min(Number(attribs.height) || 600, 600);
+        const requestedWidth = Number(attribs.width);
+        const requestedHeight = Number(attribs.height);
+        const width = Math.min(requestedWidth || 800, 800);
+        const height = Math.min(requestedHeight || 600, 600);
         // specify width/height as max values instead of absolute ones to allow object-fit to do its thing
         // we only allow our own styles for this tag so overwrite the attribute
         attribs.style = `max-width: ${width}px; max-height: ${height}px;`;
+        if (requestedWidth) {
+            attribs.style += "width: 100%;";
+        }
+        if (requestedHeight) {
+            attribs.style += "height: 100%;";
+        }
 
         attribs.src = mediaFromMxc(src).getThumbnailOfSourceHttp(width, height);
         return { tagName, attribs };
@@ -228,6 +244,7 @@ const transformTags: IExtendedSanitizeOptions["transformTags"] = { // custom to 
         }
         return { tagName, attribs };
     },
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     '*': function(tagName: string, attribs: sanitizeHtml.Attributes) {
         // Delete any style previously assigned, style is an allowedTag for font, span & img,
         // because attributes are stripped after transforming.
@@ -404,9 +421,9 @@ export interface IOptsReturnString extends IOpts {
 }
 
 const emojiToHtmlSpan = (emoji: string) =>
-    `<span class='mx_EventTile_Emoji' title='${unicodeToShortcode(emoji)}'>${emoji}</span>`;
+    `<span class='mx_Emoji' title='${unicodeToShortcode(emoji)}'>${emoji}</span>`;
 const emojiToJsxSpan = (emoji: string, key: number) =>
-    <span key={key} className='mx_EventTile_Emoji' title={unicodeToShortcode(emoji)}>{ emoji }</span>;
+    <span key={key} className='mx_Emoji' title={unicodeToShortcode(emoji)}>{ emoji }</span>;
 
 /**
  * Wraps emojis in <span> to style them separately from the rest of message. Consecutive emojis (and modifiers) are wrapped
@@ -424,7 +441,7 @@ function formatEmojis(message: string, isHtmlMessage: boolean): (JSX.Element | s
 
     // We use lodash's grapheme splitter to avoid breaking apart compound emojis
     for (const char of split(message, '')) {
-        if (mightContainEmoji(char)) {
+        if (EMOJIBASE_REGEX.test(char)) {
             if (text) {
                 result.push(text);
                 text = '';
@@ -493,8 +510,8 @@ export function bodyToHtml(content: IContent, highlights: string[], opts: IOpts 
         let formattedBody = typeof content.formatted_body === 'string' ? content.formatted_body : null;
         const plainBody = typeof content.body === 'string' ? content.body : "";
 
-        if (opts.stripReplyFallback && formattedBody) formattedBody = ReplyChain.stripHTMLReply(formattedBody);
-        strippedBody = opts.stripReplyFallback ? ReplyChain.stripPlainReply(plainBody) : plainBody;
+        if (opts.stripReplyFallback && formattedBody) formattedBody = stripHTMLReply(formattedBody);
+        strippedBody = opts.stripReplyFallback ? stripPlainReply(plainBody) : plainBody;
 
         bodyHasEmoji = mightContainEmoji(isFormattedBody ? formattedBody : plainBody);
 

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, { ChangeEvent, ContextType, createRef } from "react";
+import React, { ChangeEvent, ContextType, createRef, SyntheticEvent } from "react";
 import { MatrixEvent } from "matrix-js-sdk/src/models/event";
 import { logger } from "matrix-js-sdk/src/logger";
 
@@ -26,19 +26,20 @@ import ErrorDialog from "../dialogs/ErrorDialog";
 import AccessibleButton from "../elements/AccessibleButton";
 import Modal from "../../../Modal";
 import RoomPublishSetting from "./RoomPublishSetting";
-import { replaceableComponent } from "../../../utils/replaceableComponent";
 import RoomAliasField from "../elements/RoomAliasField";
 import MatrixClientContext from "../../../contexts/MatrixClientContext";
 import SettingsFieldset from "../settings/SettingsFieldset";
 
 interface IEditableAliasesListProps {
+    roomId?: string;
     domain?: string;
 }
 
 class EditableAliasesList extends EditableItemList<IEditableAliasesListProps> {
     private aliasField = createRef<RoomAliasField>();
 
-    private onAliasAdded = async () => {
+    private onAliasAdded = async (ev: SyntheticEvent) => {
+        ev.preventDefault();
         await this.aliasField.current.validate({ allowEmpty: false });
 
         if (this.aliasField.current.isValid) {
@@ -51,7 +52,7 @@ class EditableAliasesList extends EditableItemList<IEditableAliasesListProps> {
     };
 
     protected renderNewItemField() {
-        const onChange = (alias) => this.onNewItemChanged({ target: { value: alias } });
+        const onChange = (alias: string) => this.onNewItemChanged({ target: { value: alias } });
         return (
             <form
                 onSubmit={this.onAliasAdded}
@@ -63,7 +64,9 @@ class EditableAliasesList extends EditableItemList<IEditableAliasesListProps> {
                     ref={this.aliasField}
                     onChange={onChange}
                     value={this.props.newItem || ""}
-                    domain={this.props.domain} />
+                    domain={this.props.domain}
+                    roomId={this.props.roomId}
+                />
                 <AccessibleButton onClick={this.onAliasAdded} kind="primary">
                     { _t("Add") }
                 </AccessibleButton>
@@ -91,7 +94,6 @@ interface IState {
     newAltAlias?: string;
 }
 
-@replaceableComponent("views.room_settings.AliasSettings")
 export default class AliasSettings extends React.Component<IProps, IState> {
     public static contextType = MatrixClientContext;
     context: ContextType<typeof MatrixClientContext>;
@@ -137,12 +139,11 @@ export default class AliasSettings extends React.Component<IProps, IState> {
         this.setState({ localAliasesLoading: true });
         try {
             const mxClient = this.context;
+
             let localAliases = [];
-            if (await mxClient.doesServerSupportUnstableFeature("org.matrix.msc2432")) {
-                const response = await mxClient.unstableGetLocalAliases(this.props.roomId);
-                if (Array.isArray(response.aliases)) {
-                    localAliases = response.aliases;
-                }
+            const response = await mxClient.getLocalAliases(this.props.roomId);
+            if (Array.isArray(response?.aliases)) {
+                localAliases = response.aliases;
             }
             this.setState({ localAliases });
 
@@ -360,7 +361,7 @@ export default class AliasSettings extends React.Component<IProps, IState> {
             </Field>
         );
 
-        let localAliasesList;
+        let localAliasesList: JSX.Element;
         if (this.state.localAliasesLoading) {
             localAliasesList = <Spinner />;
         } else {
@@ -428,6 +429,7 @@ export default class AliasSettings extends React.Component<IProps, IState> {
                         itemsLabel={_t('Other published addresses:')}
                         noItemsLabel={_t('No other published addresses yet, add one below')}
                         placeholder={_t('New published address (e.g. #alias:server)')}
+                        roomId={this.props.roomId}
                     />
                 </SettingsFieldset>
                 <SettingsFieldset
