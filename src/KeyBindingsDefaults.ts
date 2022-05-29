@@ -110,6 +110,7 @@ const autocompleteBindings = (): KeyBinding[] => {
             key: Key.ENTER,
         },
     });
+    
     bindings.push({
         action: KeyBindingAction.CompleteAutocomplete,
         keyCombo: {
