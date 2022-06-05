@@ -269,7 +269,7 @@ export default class EmbeddedPage extends React.PureComponent<IProps, IState> {
                         '    \n' +
                         '    <div class="mx_Parent">\n' +
                         '        <a href="https://element.io" target="_blank" rel="noopener">\n' +
-                        '            <img src="welcome/images/logo.png" alt="" class="mx_Logo"/>\n' +
+                        '            <img src="https://static.fanoos.app/img/logo.png" alt="" class="mx_Logo"/>\n' +
                         '        </a>\n' +
                         '        <h1 class="mx_Header_title">فانوس</h1>\n' +
                         '        <h4 class="mx_Header_subtitle">ای روشنای قلب من فانوس راهت میشوم...</h4>\n' +
