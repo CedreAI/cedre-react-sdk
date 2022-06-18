@@ -125,3 +125,23 @@ limitations under the License.
         }
     }
 }
+
+
+.mx_HomePage3DMap{
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+    .rightPanel{
+        width: calc(100% - 350px);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+    }
+    .leftPanel{
+        direction: ltr;
+    }
+    .rdrDefinedRangesWrapper {
+        display: none;
+    }
+}
+
