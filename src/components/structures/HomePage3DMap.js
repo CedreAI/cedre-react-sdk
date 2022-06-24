@@ -2,7 +2,6 @@ import React from 'react'
 import Globe from 'react-globe.gl';
 import Modal from "../../Modal";
 import HomePage3DMapNews from './HomePage3DMapNews';
-import Range from 'reactrangeslider';
 
 
 
