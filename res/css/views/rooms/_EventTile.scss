@@ -190,7 +190,8 @@ $left-gutter: 64px;
     &.mx_EventTile:hover .mx_EventTile_line,
     &.mx_EventTile.mx_EventTile_actionBarFocused .mx_EventTile_line,
     &.mx_EventTile.focus-visible:focus-within .mx_EventTile_line {
-        background-color: $event-selected-color;
+        // background-color: $event-selected-color;
+        background-color: transparent;//cedre
     }
 
     .mx_EventTile_searchHighlight {
