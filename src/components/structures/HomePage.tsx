@@ -114,7 +114,7 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             
         },
         {
-            'title': 'نقشه سه بعدی',
+            'title': 'اخبار مهم',
             'content': <HomePage3DMap />,
             
         },
@@ -135,7 +135,18 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             'title': 'تقویم',
             'url': 'https://www.todaytime.ir/'
         },
-        
+        {
+            'title': 'رویداد',
+            'url': 'https://fanoosai.github.io/fanoos-meet-planner/deploy/'
+        },
+        {
+            'title': 'اتاق گفتگو',
+            'url': 'https://fanoosai.github.io/fanoos-streamer'
+        },
+        {
+            'title': 'پنل کاربری',
+            'url': 'https://static.fanoos.app/'
+        },
     ]
 
     const ActiveTabs = SettingsStore.getValue("ActiveTabs")

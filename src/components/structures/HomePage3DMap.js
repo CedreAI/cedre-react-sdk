@@ -8,38 +8,17 @@ import HomePage3DMapNews from './HomePage3DMapNews';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
+import AccessibleTooltipButton from '../views/elements/AccessibleTooltipButton';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 const { useState, useEffect } = React;
 
-const News = [
-  {
-    "id": 1,
-    "name": "Tehran",
-    "latitude": 35.6719427684,
-    "longitude": 51.4243440336,
-    "size": 1.5,
-    "color": 'yellow'
-  },
-  {
-    "name": "Kabul",
-    "latitude": 34.5166902863,
-    "longitude": 69.1832600493,
-    "size": 1.5,
-    "color": 'red'
-  },
-  {
-    "name": "Baghdad",
-    "latitude": 33.3386484975,
-    "longitude": 44.3938687732,
-    "size": 1,
-    "color": 'red'
-  },
-]
 
 const HomePage3DMap = () => {
   const [places, setPlaces] = useState([]);
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
+  const [page, setPage] = useState(1);
+  const [startDate, setStartDate] = useState(new Date("2022-05-25"))
+  const [endDate, setEndDate] = useState(new Date("2022-05-27"))
 
   var selectionRange = {
     startDate: startDate,
@@ -51,51 +30,103 @@ const HomePage3DMap = () => {
     console.log("handleSelect", ranges);
     setStartDate(ranges.selection.startDate)
     setEndDate(ranges.selection.endDate)
-    // {
-    //   selection: {
-    //     startDate: [native Date Object],
-    //     endDate: [native Date Object],
-    //   }
-    // }
+    loadData(1,ranges.selection.startDate,ranges.selection.endDate)
+
   }
 
   useEffect(() => {
     // load data
-    // fetch('https://static.fanoos.app/api/mapPoint.json').then(res => res.json())
-    //     .then(({data}) => setPlaces(data));
+    loadData(1)
   }, []);
+
+  function loadData(_page,start=startDate,end=endDate) {
+    setPage(_page)
+    var formatStartDate = start.toISOString().slice(0, 10)
+    var formatEndDate = end.toISOString().slice(0, 10)
+    fetch(`https://news.parsi.ai/api/?page=${_page}&start-date=${formatStartDate}&end-date=${formatEndDate}`, {
+      method: 'post'
+    }).then(function (response) {
+      return response.json();
+    }).then(data => {
+      if (_page == 1)
+        setPlaces(data.results)
+      else
+        setPlaces([...places, ...data.results])
+    });
+  }
+
 
   return <div className='mx_HomePage3DMap'>
 
 
     <div className='leftPanel'>
-      <DateRangePicker
-        ranges={[selectionRange]}
-        onChange={handleSelect}
-        direction='horizontal'
-        showPreview={false}
-        staticRanges={[]}
-        inputRanges={[]}
-      />
+      <Tabs>
+            <TabList >
+                 <Tab>فیلتر</Tab> 
+                 <Tab> لیست اخبار</Tab> 
+            </TabList>
+                <TabPanel>
+                                <DateRangePicker
+                        ranges={[selectionRange]}
+                        
+                        onChange={handleSelect}
+                        direction='horizontal'
+                        showPreview={false}
+                        staticRanges={[]}
+                        inputRanges={[]}
+                      />
+                </TabPanel> 
+                <TabPanel>
+                    <div className="news">
+                    {places.map(e=>
+                          <a className='newsBox'
+                              onClick={()=>Modal.createTrackedDialog('News Dialog', '', HomePage3DMapNews, e)}
+                            >
+                            <div className='imgBox'>
+                              <img src={e.image}/>
+                            </div>
+                            <div className='titleBox'>
+                              <b>{e.title}</b>
+                              <p>دسته بندی خبر : {e.category}</p>
+                              {/* <p>محل خبر : {e.place.name}</p> */}
+                            </div>
+                          </a>  
+                      )}
+                    </div>
+                      
+                </TabPanel> 
+        </Tabs>
+      
+      
+      <AccessibleTooltipButton
+        className='loadMore'
+        onClick={() => { loadData(page + 1) }}
+        title={"بیشتر"}
+      >
+        {page} دریافت بیشتر اخبار
+      </AccessibleTooltipButton>
+
     </div>
     <div className='rightPanel'>
+
+
       <Globe
         globeImageUrl="https://unpkg.com/three-globe@2.24.3/example/img/earth-blue-marble.jpg"
-        backgroundImageUrl="https://static.fanoos.app/bg2.png"
+        // backgroundImageUrl="https://static.fanoos.app/bg2.png"
 
-        labelsData={News}
-        labelLat={d => d.latitude}
-        labelLng={d => d.longitude}
-        labelText={d => d.name}
-        labelSize={d => d.size}
-        labelDotRadius={d => d.size}
-        labelColor={d => d.color}
+        labelsData={places.filter(e => e.place.lat)}
+        labelLat={d => parseFloat(d.place.lat) || 43.9171500845}
+        labelLng={d => parseFloat(d.place.lon) || 12.4666702867}
+        labelText={d => ''}
+        labelSize={d => d.count || 2}
+        labelDotRadius={d => d.count || 1}
+        // labelColor="red"
         onLabelClick={(e) => { Modal.createTrackedDialog('News Dialog', '', HomePage3DMapNews, e); }}
 
-        
-
+        labelColor={() => 'rgba(255, 165, 0, 0.75)'}
         labelResolution={2}
       />
+
     </div>
 
   </div>
