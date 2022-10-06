@@ -16,6 +16,8 @@ limitations under the License.
 */
 
 import React from 'react';
+// import MediaQuery from 'react-responsive'
+// import $ from "jquery";
 import classNames from 'classnames';
 import { throttle } from 'lodash';
 import { MatrixEvent, Room, RoomState } from 'matrix-js-sdk/src';
@@ -253,11 +255,38 @@ export default class RoomHeader extends React.Component<IProps, IState> {
                 { buttons }
             </div>;
 
-        const e2eIcon = this.props.e2eStatus ? <E2EIcon status={this.props.e2eStatus} /> : undefined;
 
+        function backToMain() {
+            document.getElementsByClassName("mx_LeftPanel_wrapper")[0].style.transform = 'translateX(0%)' // $(".mx_LeftPanel_wrapper").css('transform', 'translateX(0%)');
+            // $(".mx_RoomSublist_tiles>div[tabindex='0']").removeClass("mx_RoomTile_selected").attr({'tabindex':'-1', 'aria-selected': 'false'});
+        }       
+
+
+        if (window.matchMedia('screen and (max-width:428px)').matches) {
+            const backToChat = document.getElementsByClassName('mx_RoomTile_nameContainer');
+            for (var i = 0; i < backToChat.length; i++) {
+                backToChat[i].addEventListener('click', function(){
+                    document.getElementsByClassName("mx_LeftPanel_wrapper")[0].style.transform = 'translateX(100%)'
+                })
+            }
+        }
+
+        // $(".mx_RoomTile_nameContainer").click(function(){
+        //     if (window.matchMedia('screen and (max-width:428px)').matches) {
+        //         document.getElementsByClassName("mx_LeftPanel_wrapper")[0].style.transform = 'translateX(100%)'   // $(".mx_LeftPanel_wrapper").css('transform', 'translateX(100%)')
+        //     }
+        // });
+
+
+        const backbtn =<div className={'backbtn'} onClick={backToMain}></div>
+
+
+        const e2eIcon = this.props.e2eStatus ? <E2EIcon status={this.props.e2eStatus} /> : undefined;
+        
         return (
             <div className="mx_RoomHeader light-panel">
                 <div className="mx_RoomHeader_wrapper" aria-owns="mx_RightPanel">
+                    { backbtn }
                     <div className="mx_RoomHeader_avatar">{ roomAvatar }</div>
                     <div className="mx_RoomHeader_e2eIcon">{ e2eIcon }</div>
                     { name }

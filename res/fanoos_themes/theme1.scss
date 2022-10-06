@@ -2,7 +2,7 @@
     background-color: #008E88;
     max-width: 60%;
     color: white;
-    border-radius: 20px 20px 0 20px;
+    border-radius: 20px 0 20px 20px;
 }
 
 .fanoos_receiver-message {
@@ -28,4 +28,226 @@
  */
 .fanoos_receiver-reaction {
     float: left;
+}
+
+
+.mx_RoomHeader_wrapper{
+    height: 100%;
+    margin: 0 2rem;
+    padding: 0;
+}
+
+// .mx_RoomHeader_nametext{
+//     color: #fff;
+// }
+
+// rtl: mx_ContextualMenu_wrapper mx_MessageComposer_Menu
+.mx_ContextualMenu.mx_ContextualMenu_right.mx_ContextualMenu_bottom{
+    padding: 1rem;
+}
+
+.mx_AccessibleButton.mx_CallContextMenu_item{
+    padding-left: 0;
+}
+
+.mx_AccessibleButton.mx_MessageComposer_button {
+    padding-right: calc(var(--size) + 6px);
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.mx_AccessibleButton.mx_MessageComposer_button::before{
+    right: 3px;
+    left: 0;
+}
+
+
+// rtl mx_RoomSummaryCard
+.mx_RoomSummaryCard .mx_RoomSummaryCard_aboutGroup .mx_RoomSummaryCard_Button {
+    padding-right: 44px;
+    padding-left: 0;
+}
+.mx_RoomSummaryCard .mx_RoomSummaryCard_aboutGroup .mx_RoomSummaryCard_Button::before {
+    right: 10px;
+    left: 0;
+}
+
+    // etelate otaq
+.mx_RightPanel_ResizeWrapper {
+    position: absolute !important;
+    left: 0 !important;
+    height: 85% !important;
+}
+
+
+.mx_EventTile:not([data-layout=bubble]) .mx_EventTile_msgOption {
+    width: 100%;
+}
+
+
+
+@media (max-width: 428px){
+    
+    .mx_LeftPanel_wrapper {
+        position: absolute;
+        max-width: 100%;
+        height: 100%;
+        z-index: 1;
+        transition: 1s;
+        transform: translateX(0%);
+    }
+
+    .mx_ResizeHandle {
+        display: none;
+    }
+
+    .mx_RoomHeader .mx_RoomHeader_wrapper {
+        margin: 0 .5rem;
+    }
+
+    .mx_RoomHeader .mx_RoomHeader_wrapper .backbtn {
+        display: flex;
+        align-items: center;
+    }
+
+    .mx_RoomHeader .mx_RoomHeader_wrapper .backbtn::before{
+        content: "";
+        height: $font-24px;
+        width: 24px;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        mask-image: url('$(res)/img/chevron-forward.svg');
+        background-color: #fff;
+    }
+    
+    .mx_RoomHeader .mx_RoomHeader_wrapper .mx_RoomHeader_e2eIcon{
+        display: none;
+    }
+
+    .mx_RoomHeader .mx_RoomHeader_wrapper .mx_RoomHeader_name {
+        white-space: nowrap;
+        font-size: 3.7vw;
+        margin: 0 .5rem;
+        padding: 0;
+        width: 70%;
+    }
+
+    .mx_RoomHeader .mx_RoomHeader_wrapper .mx_RoomHeader_topic{
+        display: none;
+    }
+
+    .mx_RoomHeader .mx_RoomHeader_wrapper .mx_RoomHeader_buttons .mx_RoomHeader_voiceCallButton{
+        display: none;
+    }
+    .mx_RoomHeader .mx_RoomHeader_wrapper .mx_RoomHeader_buttons .mx_RoomHeader_videoCallButton{
+        display: none;
+    }
+    .mx_RoomHeader .mx_RoomHeader_wrapper .mx_HeaderButtons .mx_RightPanel_notifsButton {
+        display: none;
+    }
+
+
+    
+    .mx_RoomView_MessageList {
+        padding: 1rem !important;
+    }
+    
+    
+    .mx_EventTile_line {
+        background: none !important;
+        margin-right: 2.5rem !important;
+        margin-left: 2.5rem !important;
+        padding-left: 0 !important;
+    }
+    
+    
+    .mx_EventTile_content {
+        padding: 1rem;
+        margin: 0 !important;
+        min-width: 5.5rem !important;
+        max-width: 100% !important;
+        float: unset;
+    }
+    
+    .mx_GroupLayout .mx_EventTile>.mx_SenderProfile {
+        margin-left: 40px !important;
+        margin-right: 40px !important;
+    }
+
+    .mx_MessageActionBar{
+        margin: 0 !important;
+        z-index: 10;
+    }
+    .mx_MessageActionBar::before{
+        width: unset !important;
+    }
+
+
+
+
+    // .mx_RoomView_MessageList {
+    //     padding: 4rem !important;
+    // }
+    
+    // .mx_RoomView_MessageList li{
+    //     max-width: 90% !important;
+    // }
+    
+    
+    // .mx_EventTile_line {
+    //     background: none !important;
+    //     margin-right: 0 !important;
+    //     margin-left: 0 !important;
+    //     padding-left: 0 !important;
+    // }
+    
+    
+    // .mx_EventTile_content {
+    //     padding: 1rem;
+    //     margin: 0 !important;
+    //     min-width: 5.5rem !important;
+    //     max-width: 100% !important;
+    //     float: unset;
+    // }
+    
+    // .fanoos_sender-avatar {
+    //     position: absolute;
+    //     right: -4rem;
+    //     margin: 0 !important;
+    // }
+    
+    // .fanoos_receiver-avatar {
+    //     position: absolute;
+    //     left: -4rem;
+    //     margin: 0 !important;
+    // }
+
+    
+
+    // .mx_MessageActionBar{
+    //     margin: 0;
+    //     z-index: 10;
+    // }
+    // .mx_MessageActionBar::before{
+    //     width: unset !important;
+    // }
+
+
+    // // etelate otaq
+    // .mx_RightPanel_ResizeWrapper {
+    //     position: absolute !important;
+    //     left: 0 !important;
+    //     height: 85% !important;
+    // }
+
+
+    // .mx_EventTile:not([data-layout=bubble]) .mx_EventTile_msgOption {
+    //     width: 100%;
+    // }
+
+
+
+
 }
