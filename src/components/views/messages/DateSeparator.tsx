@@ -37,6 +37,8 @@ import IconizedContextMenu, {
 import JumpToDatePicker from './JumpToDatePicker';
 import { ViewRoomPayload } from "../../../dispatcher/payloads/ViewRoomPayload";
 
+require('persian-date');
+
 function getDaysArray(): string[] {
     return [
         _t('Sunday'),

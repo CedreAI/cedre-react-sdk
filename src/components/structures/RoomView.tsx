@@ -111,6 +111,8 @@ import { CallStore, CallStoreEvent } from "../../stores/CallStore";
 import { Call } from "../../models/Call";
 import { RoomSearchView } from './RoomSearchView';
 import eventSearch from "../../Searching";
+import RoomViewBackground from './RoomViewBackground.js'
+
 
 const DEBUG = false;
 let debuglog = function(msg: string) {};
@@ -2247,7 +2249,8 @@ export class RoomView extends React.Component<IRoomProps, IRoomState> {
 
         return (
             <RoomContext.Provider value={this.state}>
-                <main className={mainClasses} ref={this.roomView} onKeyDown={this.onReactKeyDown}>
+                <RoomViewBackground className={mainClasses} ref={this.roomView} onKeyDown={this.onReactKeyDown}>
+                    {/* <main className={mainClasses} ref={this.roomView} onKeyDown={this.onReactKeyDown}> */}
                     { showChatEffects && this.roomView.current &&
                         <EffectsOverlay roomWidth={this.roomView.current.offsetWidth} />
                     }
@@ -2275,7 +2278,8 @@ export class RoomView extends React.Component<IRoomProps, IRoomState> {
                             </div>
                         </MainSplit>
                     </ErrorBoundary>
-                </main>
+                {/* </main> */}
+                </RoomViewBackground>
             </RoomContext.Provider>
         );
     }

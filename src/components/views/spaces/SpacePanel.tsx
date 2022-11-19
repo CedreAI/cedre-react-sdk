@@ -103,9 +103,9 @@ export const HomeButtonContextMenu = ({
         className="mx_SpacePanel_contextMenu"
         compact
     >
-        { !hideHeader && <div className="mx_SpacePanel_contextMenu_header">
-            { _t("Home") }
-        </div> }
+        {!hideHeader && <div className="mx_SpacePanel_contextMenu_header">
+            {_t("Home")}
+        </div>}
         <IconizedContextMenuOptionList first>
             <IconizedContextMenuCheckbox
                 iconClassName="mx_SpacePanel_noIcon"
@@ -239,7 +239,7 @@ const CreateSpaceButton = ({
             ref={handle}
         />
 
-        { contextMenu }
+        {contextMenu}
     </li>;
 };
 
@@ -295,10 +295,10 @@ const InnerSpacePanel = React.memo<IInnerSpacePanelProps>(({
                 isPanelCollapsed={isPanelCollapsed}
                 onExpand={() => setPanelCollapsed(false)}
             />
-        )) }
-        { actualSpaces.map((s, i) => (
+        ))}
+        {actualSpaces.map((s, i) => (
             <Draggable key={s.roomId} draggableId={s.roomId} index={i}>
-                { (provided, snapshot) => (
+                {(provided, snapshot) => (
                     <SpaceItem
                         {...provided.draggableProps}
                         dragHandleProps={provided.dragHandleProps}
@@ -310,7 +310,7 @@ const InnerSpacePanel = React.memo<IInnerSpacePanelProps>(({
                         isPanelCollapsed={isPanelCollapsed}
                         onExpand={() => setPanelCollapsed(false)}
                     />
-                ) }
+                )}
             </Draggable>
         )) }
         { children }
@@ -355,7 +355,7 @@ const SpacePanel = () => {
                                 title={isPanelCollapsed ? _t("Expand") : _t("Collapse")}
                                 tooltip={<div>
                                     <div className="mx_Tooltip_title">
-                                        { isPanelCollapsed ? _t("Expand") : _t("Collapse") }
+                                        {isPanelCollapsed ? _t("Expand") : _t("Collapse")}
                                     </div>
                                     <div className="mx_Tooltip_sub">
                                         { IS_MAC

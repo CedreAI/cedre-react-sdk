@@ -59,7 +59,6 @@ export default class Welcome extends React.PureComponent<IProps> {
                             "[matrix]": MATRIX_LOGO_HTML,
                         }}
                     />
-                    <LanguageSelector />
                 </div>
             </AuthPage>
         );

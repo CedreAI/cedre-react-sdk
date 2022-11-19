@@ -16,7 +16,6 @@ limitations under the License.
 */
 
 import React from 'react';
-
 import { formatFullDate, formatTime, formatFullTime, formatRelativeTime } from '../../../DateUtils';
 
 interface IProps {
@@ -41,13 +40,31 @@ export default class MessageTimestamp extends React.Component<IProps> {
             timestamp = formatTime(date, this.props.showTwelveHour);
         }
 
+        let persianTimestamp = '';
+
+        for (let i = 0; i < timestamp.length; i++) {
+            switch (timestamp[i]) {
+                case '0': persianTimestamp += '۰'; break;
+                case '1': persianTimestamp += '۱'; break;
+                case '2': persianTimestamp += '۲'; break;
+                case '3': persianTimestamp += '۳'; break;
+                case '4': persianTimestamp += '۴'; break;
+                case '5': persianTimestamp += '۵'; break;
+                case '6': persianTimestamp += '۶'; break;
+                case '7': persianTimestamp += '۷'; break;
+                case '8': persianTimestamp += '۸'; break;
+                case '9': persianTimestamp += '۹'; break;
+                default: persianTimestamp += timestamp[i];
+            }
+        }
+
         return (
             <span
                 className="mx_MessageTimestamp"
                 title={formatFullDate(date, this.props.showTwelveHour)}
                 aria-hidden={true}
             >
-                { timestamp }
+                { persianTimestamp }
             </span>
         );
     }

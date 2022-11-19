@@ -984,6 +984,10 @@ export const SETTINGS: {[setting: string]: ISetting} = {
         supportedLevels: LEVELS_ACCOUNT_SETTINGS,
         default: ImageSize.Normal,
     },
+    "ActiveTabs": {
+        supportedLevels: LEVELS_ACCOUNT_SETTINGS,
+        default: [1,1,1,1,1,1,1,1,1,1],
+    },
     "showChatEffects": {
         supportedLevels: LEVELS_ROOM_SETTINGS_WITH_ROOM,
         displayName: _td("Show chat effects (animations when receiving e.g. confetti)"),

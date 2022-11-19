@@ -31,6 +31,7 @@ import LayoutSwitcher from "../../LayoutSwitcher";
 import FontScalingPanel from '../../FontScalingPanel';
 import ThemeChoicePanel from '../../ThemeChoicePanel';
 import ImageSizePanel from "../../ImageSizePanel";
+import MainTabsPanel from "../../MainTabsPanel";
 
 interface IProps {
 }
@@ -157,6 +158,7 @@ export default class AppearanceUserSettingsTab extends React.Component<IProps, I
                 <FontScalingPanel />
                 { this.renderAdvancedSection() }
                 <ImageSizePanel />
+                <MainTabsPanel />
             </div>
         );
     }

@@ -36,12 +36,16 @@ interface IProps {
 }
 
 interface IState {
-    defaultChosen: boolean;
+    parsiChosen: boolean;
+    quranicChosen: boolean;
+    ebadQuranicChosen: boolean;
+    motaghinQuranicChosen: boolean;
+    otherChosen: boolean;
     otherHomeserver: string;
 }
 
 export default class ServerPickerDialog extends React.PureComponent<IProps, IState> {
-    private readonly defaultServer: ValidatedServerConfig;
+    private defaultServer: ValidatedServerConfig;
     private readonly fieldRef = createRef<Field>();
     private validatedConf: ValidatedServerConfig;
 
@@ -62,21 +66,57 @@ export default class ServerPickerDialog extends React.PureComponent<IProps, ISta
         }
 
         this.state = {
-            defaultChosen: serverConfig.isDefault,
+            parsiChosen: serverConfig.isDefault,
+            quranicChosen: false,
+            ebadQuranicChosen: false,
+            motaghinQuranicChosen: false,
+            otherChosen: false,
             otherHomeserver,
         };
     }
 
-    private onDefaultChosen = () => {
-        this.setState({ defaultChosen: true });
+    private onParsiChosen = () => {
+        this.setState({motaghinQuranicChosen : false });
+        this.setState({quranicChosen : false });
+        this.setState({ebadQuranicChosen : false });
+        this.setState({otherChosen : false });
+        this.setState({parsiChosen : true });
     };
 
     private onOtherChosen = () => {
-        this.setState({ defaultChosen: false });
+        this.setState({motaghinQuranicChosen : false });
+        this.setState({quranicChosen : false });
+        this.setState({ebadQuranicChosen : false });
+        this.setState({parsiChosen : false });
+        this.setState({otherChosen : true });
     };
 
     private onHomeserverChange = (ev) => {
         this.setState({ otherHomeserver: ev.target.value });
+    };
+
+    private onAlternativeServerChosen1 = () => {
+        this.setState({motaghinQuranicChosen : false });
+        this.setState({ebadQuranicChosen : false });
+        this.setState({parsiChosen : false });
+        this.setState({otherChosen : false });
+        this.setState({quranicChosen : true });
+    };
+
+    private onAlternativeServerChosen2 = () => {
+        this.setState({motaghinQuranicChosen : false });
+        this.setState({quranicChosen : false });
+        this.setState({parsiChosen : false });
+        this.setState({otherChosen : false });
+        this.setState({ebadQuranicChosen : true });
+    };
+
+    private onAlternativeServerChosen3 = () => {
+        this.setState({quranicChosen : false });
+        this.setState({ebadQuranicChosen : false });
+        this.setState({parsiChosen : false });
+        this.setState({otherChosen : false });
+        this.setState({motaghinQuranicChosen : true });
     };
 
     // TODO: Do we want to support .well-known lookups here?
@@ -153,13 +193,31 @@ export default class ServerPickerDialog extends React.PureComponent<IProps, ISta
 
         const valid = await this.fieldRef.current.validate({ allowEmpty: false });
 
-        if (!valid && !this.state.defaultChosen) {
+        let areDefaultsChosen: boolean =  this.state.parsiChosen || this.state.motaghinQuranicChosen || this.state.ebadQuranicChosen
+            || this.state.quranicChosen;
+        if (!valid && !areDefaultsChosen) {
             this.fieldRef.current.focus();
             this.fieldRef.current.validate({ allowEmpty: false, focused: true });
             return;
         }
-
-        this.props.onFinished(this.state.defaultChosen ? this.defaultServer : this.validatedConf);
+        let quranicConfig : ValidatedServerConfig = new ValidatedServerConfig();
+        quranicConfig.isDefault = true;
+        quranicConfig.isNameResolvable = true;
+        quranicConfig.hsNameIsDifferent = 'false';
+        if(this.state.quranicChosen) {
+            quranicConfig.hsUrl = 'https://quranic.network';
+            quranicConfig.hsName = 'quranic.network';
+            this.defaultServer = quranicConfig;
+        } else if (this.state.ebadQuranicChosen) {
+            quranicConfig.hsUrl = 'https://ebad.quranic.network';
+            quranicConfig.hsName = 'ebad.quranic.network';
+            this.defaultServer = quranicConfig;
+        } else if (this.state.motaghinQuranicChosen) {
+            quranicConfig.hsUrl = 'https://motaghin.quranic.network';
+            quranicConfig.hsName = 'motaghin.quranic.network';
+            this.defaultServer = quranicConfig;
+        }
+        this.props.onFinished(areDefaultsChosen ? this.defaultServer : this.validatedConf);
     };
 
     public render() {
@@ -191,19 +249,47 @@ export default class ServerPickerDialog extends React.PureComponent<IProps, ISta
                 </p>
 
                 <StyledRadioButton
-                    name="defaultChosen"
-                    value="true"
-                    checked={this.state.defaultChosen}
-                    onChange={this.onDefaultChosen}
+                    name="quranicChosen"
+                    value="false"
+                    checked={this.state.quranicChosen}
+                    onChange={this.onAlternativeServerChosen1}
                 >
-                    { defaultServerName }
+                    { 'quranic.network' }
                 </StyledRadioButton>
 
                 <StyledRadioButton
                     name="defaultChosen"
+                    value="true"
+                    checked={this.state.parsiChosen}
+                    onChange={this.onParsiChosen}
+                >
+                    { defaultServerName }
+                </StyledRadioButton>
+
+
+                <StyledRadioButton
+                    name="ebadChosen"
+                    value="false"
+                    checked={this.state.ebadQuranicChosen}
+                    onChange={this.onAlternativeServerChosen2}
+                >
+                    { 'ebad.quranic.network' }
+                </StyledRadioButton>
+
+                <StyledRadioButton
+                    name="motaghinChosen"
+                    value="false"
+                    checked={this.state.motaghinQuranicChosen}
+                    onChange={this.onAlternativeServerChosen3}
+                >
+                    { 'motaghin.quranic.network' }
+                </StyledRadioButton>
+
+                <StyledRadioButton
+                    name="otherChosen"
                     value="false"
                     className="mx_ServerPickerDialog_otherHomeserverRadio"
-                    checked={!this.state.defaultChosen}
+                    checked={this.state.otherChosen}
                     onChange={this.onOtherChosen}
                     childrenInLabel={false}
                     aria-label={_t("Other homeserver")}

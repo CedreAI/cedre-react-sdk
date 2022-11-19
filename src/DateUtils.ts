@@ -17,6 +17,8 @@ limitations under the License.
 */
 
 import { _t } from './languageHandler';
+const shamsi = require('shamsi-date-converter');
+const JDate = require('jalali-date');
 
 function getDaysArray(): string[] {
     return [
@@ -88,14 +90,27 @@ export function formatDate(date: Date, showTwelveHour = false): string {
 }
 
 export function formatFullDateNoTime(date: Date): string {
-    const days = getDaysArray();
-    const months = getMonthsArray();
-    return _t('%(weekDayName)s, %(monthName)s %(day)s %(fullYear)s', {
-        weekDayName: days[date.getDay()],
-        monthName: months[date.getMonth()],
-        day: date.getDate(),
-        fullYear: date.getFullYear(),
-    });
+    const persianDateArray = shamsi.gregorianToJalali(date);
+    const jdate = new JDate(persianDateArray);
+    let persianDate = jdate.format('dddd DD MMMM YYYY');
+    let persianDateWithPersianNumbers = '';
+    console.log(persianDate.length);
+    for (let i = 0; i < persianDate.length; i++) {
+        switch (persianDate[i]) {
+            case '0': persianDateWithPersianNumbers += '۰'; break;
+            case '1': persianDateWithPersianNumbers += '۱'; break;
+            case '2': persianDateWithPersianNumbers += '۲'; break;
+            case '3': persianDateWithPersianNumbers += '۳'; break;
+            case '4': persianDateWithPersianNumbers += '۴'; break;
+            case '5': persianDateWithPersianNumbers += '۵'; break;
+            case '6': persianDateWithPersianNumbers += '۶'; break;
+            case '7': persianDateWithPersianNumbers += '۷'; break;
+            case '8': persianDateWithPersianNumbers += '۸'; break;
+            case '9': persianDateWithPersianNumbers += '۹'; break;
+            default: persianDateWithPersianNumbers += persianDate[i];
+        }
+    }
+    return persianDateWithPersianNumbers;
 }
 
 export function formatFullDate(date: Date, showTwelveHour = false, showSeconds = true): string {
