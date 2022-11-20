@@ -40,6 +40,8 @@ import HomePageMap from "./HomePageMap.js";
 import HomePageChart from "./HomePageChart";
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+
 const onClickSendDm = (ev: ButtonEvent) => {
     PosthogTrackers.trackInteraction("WebHomeCreateChatButton", ev);
     dis.dispatch({ action: 'view_create_chat' });
@@ -91,8 +93,8 @@ const UserWelcomeTop = () => {
             />
         </MiniAvatarUploader>
 
-        <h1>{ _tDom("Welcome %(name)s", { name: ownProfile.displayName }) }</h1>
-        <h4>{ _tDom("Now, let's help you get started") }</h4>
+        <h1>{_tDom("Welcome %(name)s", { name: ownProfile.displayName })}</h1>
+        <h2>{_tDom("Now, let's help you get started")}</h2>
     </div>;
 };
 
@@ -103,22 +105,22 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
         {
             'title': 'ساختار',
             'content': <HomePageChart />,
-            
+
         },
         {
             'title': 'نقشه',
             'content': <HomePageMap />,
-            
+
         },
         {
             'title': 'اخبار مهم',
             'content': <HomePage3DMap />,
-            
+
         },
         {
             'title': 'قرآن',
             'url': 'https://ayat.language.ml/'
-            
+
         },
         {
             'title': 'اخبار',
@@ -145,16 +147,14 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             'url': 'https://static.fanoos.app/'
         },
     ]
+     const ActiveTabs = SettingsStore.getValue("ActiveTabs")
 
-    const ActiveTabs = SettingsStore.getValue("ActiveTabs")
-
-    if(tabsData.length > ActiveTabs.length) {
+    if (tabsData.length > ActiveTabs.length) {
         for (let i = 0; i < tabsData.length - ActiveTabs.length; i++) {
             ActiveTabs.push(1)
         }
         SettingsStore.setValue("ActiveTabs", null, SettingLevel.ACCOUNT, ActiveTabs);
     }
-
     if (pageUrl) {
         return <EmbeddedPage className="mx_HomePage" url={pageUrl} scrollbar={true} />;
     }
@@ -168,14 +168,26 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
 
         introSection = <React.Fragment>
             <img src={logoUrl} alt={config.brand} />
-            <h1>{ _tDom("Welcome to %(appName)s", { appName: config.brand }) }</h1>
-            <h4>{ _tDom("Own your conversations.") }</h4>
+            <h1>{_tDom("Welcome to %(appName)s", { appName: config.brand })}</h1>
+            <h2>{_tDom("Own your conversations.")}</h2>
         </React.Fragment>;
     }
 
-   
-    return <AutoHideScrollbar>
-
+    return <AutoHideScrollbar className="mx_HomePage mx_HomePage_default" element="main">
+        {/* <div className="mx_HomePage_default_wrapper">
+            { introSection }
+            <div className="mx_HomePage_default_buttons">
+                <AccessibleButton onClick={onClickSendDm} className="mx_HomePage_button_sendDm">
+                    { _tDom("Send a Direct Message") }
+                </AccessibleButton>
+                <AccessibleButton onClick={onClickExplore} className="mx_HomePage_button_explore">
+                    { _tDom("Explore Public Rooms") }
+                </AccessibleButton>
+                <AccessibleButton onClick={onClickNewRoom} className="mx_HomePage_button_createGroup">
+                    { _tDom("Create a Group Chat") }
+                </AccessibleButton>
+            </div>
+        </div> */}
         <Tabs className='mx_HomePage_Tabs'>
             <TabList >
                 {ActiveTabs.slice(0,tabsData.length).map((item,index)=>item == 1 ? <Tab>{tabsData[index].title}</Tab> : null)}
@@ -187,16 +199,7 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             : null)}
         </Tabs>
 
-                <AccessibleButton onClick={onClickSendDm} className="mx_HomePage_button_sendDm">
-                    { _tDom("Send a Direct Message") }
-                </AccessibleButton>
-                <AccessibleButton onClick={onClickExplore} className="mx_HomePage_button_explore">
-                    { _tDom("Explore Public Rooms") }
-                </AccessibleButton>
-                <AccessibleButton onClick={onClickNewRoom} className="mx_HomePage_button_createGroup">
-                    { _tDom("Create a Group Chat") }
-                </AccessibleButton>
-            </div> */}
+        
     </AutoHideScrollbar>;
 };
 
