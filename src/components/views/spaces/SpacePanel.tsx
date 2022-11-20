@@ -257,7 +257,26 @@ interface IInnerSpacePanelProps extends DroppableProvidedProps {
     isDraggingOver: boolean;
     innerRef: RefCallback<HTMLElement>;
 }
-
+const HomeIcon = () => {
+    
+    return <li className="mx_SpaceItem" onClick={()=>{
+        defaultDispatcher.dispatch({
+            action: 'view_home_page',
+        });
+    }}>
+        <div className="mx_AccessibleButton mx_SpaceButton mx_SpaceButton_home mx_SpaceButton_active mx_SpaceButton_narrow">
+            <div className="mx_SpaceButton_selectionWrapper">
+                <div className="mx_SpaceButton_avatarWrapper">
+                    <div className="mx_SpaceButton_avatarPlaceholder">
+                        <div className="mx_SpaceButton_icon">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+}
 // Optimisation based on https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md#recommended-droppable--performance-optimisation
 const InnerSpacePanel = React.memo<IInnerSpacePanelProps>(({
     children,
@@ -286,7 +305,9 @@ const InnerSpacePanel = React.memo<IInnerSpacePanelProps>(({
         role="tree"
         aria-label={_t("Spaces")}
     >
-        { metaSpacesSection }
+        {/* { metaSpacesSection } */}
+        {<HomeIcon />}
+        
         { invites.map(s => (
             <SpaceItem
                 key={s.roomId}
