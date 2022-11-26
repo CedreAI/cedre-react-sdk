@@ -103,6 +103,15 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
     const pageUrl = getHomePageUrl(config);
     const tabsData = [
         {
+            'title': 'تقویم',
+            'url': 'https://www.todaytime.ir/'
+        },
+        {
+            'title': 'قرآن',
+            'url': 'https://ayat.language.ml/'
+
+        },
+        {
             'title': 'ساختار',
             'content': <HomePageChart />,
 
@@ -118,21 +127,12 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
 
         },
         {
-            'title': 'قرآن',
-            'url': 'https://ayat.language.ml/'
-
-        },
-        {
             'title': 'اخبار',
             'url': 'https://www.parseek.com/Latest/'
         },
         {
             'title': 'بانک حدیث',
             'url': 'https://hadith.inoor.ir'
-        },
-        {
-            'title': 'تقویم',
-            'url': 'https://www.todaytime.ir/'
         },
         {
             'title': 'رویداد',

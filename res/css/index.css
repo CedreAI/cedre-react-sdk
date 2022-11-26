@@ -1,0 +1,214 @@
+body {
+	font-family: 'iran-yekan' !important;
+	font-weight: 300;
+	direction: rtl;
+	background-color: #E2E2E2;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6,input, textarea {
+	font-family: 'iran-yekan' !important;
+}
+
+
+
+.mx_EventTile:not([data-self=true]) {
+    direction: ltr;
+}
+li:not([data-self=true]) .mx_SenderProfile {
+    text-align: left;
+    width: 100%;
+}
+.mx_EventTile:not([data-self=true]) .mx_MessageActionBar {
+    position: absolute;
+    left: 25%;
+    right: unset;
+}
+.mx_EventTile[data-self=true] .mx_MessageActionBar {
+    margin-right: 25%;
+}
+.mx_EventTile:not([data-self=true]) .mx_ReactionsRow {
+    text-align: left;
+}
+.mx_EventTile[data-self=false]{
+    text-align: left;
+}
+.mx_EventTile:not([data-self=false]) .mx_EventTile_content {
+    /* background-color: #005c4bd6 !important; */
+    background-color: #d9fdd3 !important;
+    /* color: #fff ! important; */
+    color: #000 !important;
+}
+
+.mx_EventTile:not([data-self=true]) .mx_EventTile_content {
+background-color: #fff !important;
+}
+.mx_EventTile:not([data-self=true]) .mx_ReplyChain {
+    text-align: left;
+}
+
+.mx_RoomView_timeline_rr_enabled .mx_EventTile[data-layout="group"] .mx_ThreadSummary, .mx_RoomView_timeline_rr_enabled .mx_EventTile[data-layout="group"] .mx_ThreadSummary_icon, .mx_RoomView_timeline_rr_enabled .mx_EventTile[data-layout="group"] .mx_EventTile_line {
+    margin-right: 0px !important;
+}
+
+.mx_EventTile[data-self=true] .mx_EventTile_avatar{
+    right: 0;
+    left: unset;
+}
+.mx_EventTile[data-self=true] .mx_DisambiguatedProfile{
+    margin-left: unset !important;
+    margin-right: 40px;
+}
+
+
+.mx_TextualEvent {
+    text-align: center;
+    margin-left: -60px;
+    color: #000;
+}
+.mx_MTextBody.mx_EventTile_content {
+    max-width: 50%;
+    width: fit-content;
+}
+
+.mx_EventTile:not([data-self=false]) .mx_EventTile_line > a {
+    position: absolute;
+    right: 20px;
+    top: 7px;
+}
+/* .mx_EditMessageComposer */
+.mx_BasicMessageComposer_input{ 
+    /* background-color: #ffffff2b !important ; */
+    direction: rtl;
+}
+.mx_RoomView {
+    background-image: url(https://static.fanoos.app/bg-chat-tile-dark.png) !important;
+    background: #fff;
+    background-repeat: repeat;
+    background-size: 350px;
+}
+.mx_MainSplit{
+	background: #efeae25c;
+}
+.mx_EventTile_content{
+    box-shadow: 0 1px 0.5px rgb(11 20 26 / 13%) !important;
+    border-radius: 8px;
+    padding: 5px;
+}
+.mx_SpacePanel {
+    background-image: unset;
+    background-color: #f0f2f5;
+    background-image: linear-gradient(#17175a, #5a7dd3);
+}
+.mx_RoomHeader.light-panel {
+    background-color: #181a5e;
+    /* //background-color: #f0f2f5; */
+    border-bottom: 1px solid #ddd;
+}
+.mx_RoomHeader_wrapper {
+    border-bottom: unset;
+    margin-bottom: 7px;
+    height: 53px !important;
+    border: 0 !important;
+}
+.mx_RightPanel_headerButton:before, .mx_RoomHeader_button:before {
+    background-color: #fff;
+}
+.mx_RoomHeader_avatar, .mx_RoomHeader_name {
+    color: #fff;
+}
+
+.mx_MessageComposer_button:before {
+    background-color: #607d8b;
+}
+.mx_EventTile:not([data-layout=bubble]).mx_EventTile_highlight .markdown-body .mx_EventTile_line,
+ .mx_EventTile:not([data-layout=bubble]).mx_EventTile_highlight .mx_EventTile_line {
+    background-color: transparent;
+}
+
+.mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active.mx_SpaceButton_narrow .mx_SpaceButton_selectionWrapper {
+    border-color: #fff !important;
+}
+.mx_SpaceButton_icon,.mx_SpaceButton_icon::before {
+    filter: brightness(3);
+}
+.mx_ContextualMenu_wrapper.mx_SpaceCreateMenu_wrapper {
+    right: 72px !important;
+    left: unset;
+}
+.mx_RoomHeader_button:hover,.mx_RightPanel_headerButton:hover{
+	background-color:#fff !important;
+}
+.mx_LeftPanel_filterContainer{
+
+    background: #181a5f;
+    margin: 0px !important;
+    padding: 13.5px !important;
+}
+
+.mx_RoomHeader_nametext{
+    color: #fff;
+}
+
+.mx_TabbedView_tabsOnLeft .mx_TabbedView_tabPanel{
+    margin-left: unset !important;
+    margin-right: 220px;
+}
+
+.mx_HomePage_Tabs{
+    width: 100%;
+    height: 100vh;
+}
+
+.mx_HomePage_Tabs .mx_HomePage_Tabs_Iframe, .mx_HomePage_Tabs iframe {
+    width: 100%;
+    height: calc(100vh - 50px);
+}
+
+.mx_AuthFooter{
+    display: none !important;
+}
+
+
+.mx_Parent {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px 35px;
+    color: #2e2f32;
+    border-radius: 10px;
+    background-color: #ffffff69;
+    box-shadow: 0 30px 35px 5px rgb(255 255 255 / 38%), 0 30px 35px 5px rgb(255 255 255 / 34%), 0 -35px 35px 5px rgb(255 255 255 / 34%);
+}
+
+
+.mx_LeftPanel .mx_LeftPanel_roomListContainer{
+    background-color: #fff !important;
+}
+
+.mx_ContextualMenu_wrapper.mx_MessageComposer_Menu {
+    left: 200px;
+    right: unset !important;
+}
+
+.mx_ShareType_option-icon{
+    margin-left: 12px;
+    margin-right: unset;
+}
+
+
+/* poll */
+.mx_CompoundDialog_header{
+    display: flex;
+    justify-content: flex-end;
+}
+.mx_Field_select::before{
+    right: unset !important;
+    left: 10px !important;
+}
+.mx_Field label {
+    right: 10px !important;
+    left: unset !important;
+}

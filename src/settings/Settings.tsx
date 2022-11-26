@@ -986,7 +986,7 @@ export const SETTINGS: {[setting: string]: ISetting} = {
     },
     "ActiveTabs": {
         supportedLevels: LEVELS_ACCOUNT_SETTINGS,
-        default: [1,1,1,1,1,1,1,1,1,1],
+        default: [1,1,0,0,0,0,0,0,0,0],
     },
     "showChatEffects": {
         supportedLevels: LEVELS_ROOM_SETTINGS_WITH_ROOM,
