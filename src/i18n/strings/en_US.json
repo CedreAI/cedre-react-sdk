@@ -1982,7 +1982,7 @@
     "Enter your password to sign in and regain access to your account.": "جهت ورود مجدد به حساب کاربری و دسترسی به منوی کاربری، گذرواژه‌ی خود را وارد نمائید.",
     "Failed to re-authenticate": "احراز هویت مجدد موفیت‌آمیز نبود",
     "Incorrect password": "گذرواژه صحیح نیست",
-    "Verify your identity to access encrypted messages and prove your identity to others.": "با تائید هویت خود به پیام‌های رمزشده دسترسی یافته و هویت خود را به دیگران ثابت می‌کنید.",
+    "Verify your identity to access encrypted messages and prove your identity to others.": " با تائید هویت خود به پیام‌های رمزشده دسترسی یافته و هویت خود را به دیگران ثابت می‌کنید. (پیشنهاد می‌کنیم روی ضربدر بزنید)",
     "Decide where your account is hosted": "حساب کاربری شما بر روی کجا ساخته شود",
     "Host account on": "ساختن حساب کاربری بر روی",
     "Create account": "ساختن حساب کاربری",
@@ -2696,8 +2696,16 @@
     "More options": "بیشتر",
     "Write something...": "بنویسید",
     "Option %(number)s": "گزینه %(number)s",
-    "Voters see results as soon as they have voted": " "
+    "Voters see results as soon as they have voted": " ",
 
+    "Seen by %(count)s people|other": "مشاهده شده توسط %(count)s نفر",
+    "Seen by %(count)s people|one": "مشاهده شده توسط %(count)s نفر",
 
-
+    "I'll verify later": "بعدا تایید میکنم (توصیه شده)",
+    "Without verifying, you won't have access to all your messages and may appear as untrusted to others.": "بدون تأیید، به همه پیام‌های خود دسترسی نخواهید داشت و ممکن است برای دیگران غیرقابل اعتماد به نظر برسید.",
+    "Verify other device": "دستگاه دیگر را تأیید کنید",
+    "To proceed, please accept the verification request on your other device.": "برای ادامه، لطفاً درخواست تأیید را در دستگاه دیگر خود بپذیرید",
+    "Verify with Security Key or Phrase": "تایید با کلید یا عبارت رمز",
+    "Verify with Security Key": "تایید با کلید رمز"
+    
 }

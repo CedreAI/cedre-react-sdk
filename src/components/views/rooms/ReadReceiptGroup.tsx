@@ -219,7 +219,8 @@ export function ReadReceiptGroup(
                                 READ_AVATAR_SIZE - READ_AVATAR_OFFSET,
                         }}
                     >
-                        { avatars }
+                        {/* { avatars } */}
+                        <div className="mx_EventTile_receiptSeen"></div>
                     </span>
                 </AccessibleButton>
                 { tooltip }
